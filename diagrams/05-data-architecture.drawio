@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-09-08T13:00:00.000Z" agent="TripRescue" version="21.0.0" type="device">
+  <diagram id="data-arch" name="Data Architecture">
+    <mxGraphModel dx="1000" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- User -->
+        <mxCell id="db1" value="User&#xa;─────────&#xa;id (PK)&#xa;name&#xa;email&#xa;home_city&#xa;preferences_id (FK)" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="160" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Trip -->
+        <mxCell id="db2" value="Trip&#xa;─────────&#xa;id (PK)&#xa;user_id (FK)&#xa;name, destination&#xa;start_date, end_date&#xa;budget_ceiling&#xa;recovery_strategy&#xa;trip_health_score&#xa;status" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#82b366;fillColor=#d5e8d4;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="300" y="30" width="170" height="170" as="geometry" />
+        </mxCell>
+
+        <!-- Booking -->
+        <mxCell id="db3" value="Booking&#xa;─────────&#xa;id (PK)&#xa;trip_id (FK)&#xa;type (flight/train/...)&#xa;origin, destination&#xa;start_time, end_time&#xa;status&#xa;source (manual/ai)&#xa;is_important&#xa;sequence_index" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#d6b656;fillColor=#fff2cc;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="570" y="30" width="170" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Dependency -->
+        <mxCell id="db4" value="Dependency&#xa;─────────&#xa;id (PK)&#xa;trip_id (FK)&#xa;from_booking_id (FK)&#xa;to_booking_id (FK)&#xa;min_buffer_minutes&#xa;dependency_type" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#d6b656;fillColor=#fff2cc;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="840" y="30" width="170" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Disruption -->
+        <mxCell id="db5" value="Disruption&#xa;─────────&#xa;id (PK)&#xa;trip_id (FK)&#xa;booking_id (FK)&#xa;type (delay/cancel/...)&#xa;delay_minutes&#xa;severity&#xa;status" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="150" y="340" width="170" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- ImpactResult -->
+        <mxCell id="db6" value="ImpactResult&#xa;─────────&#xa;id (PK)&#xa;disruption_id (FK)&#xa;affected_booking_id (FK)&#xa;severity&#xa;slack_minutes&#xa;reason_code&#xa;reason_text" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="420" y="340" width="170" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- RecoveryPlan -->
+        <mxCell id="db7" value="RecoveryPlan&#xa;─────────&#xa;id (PK)&#xa;disruption_id (FK)&#xa;label (best/cheap/fast)&#xa;additional_cost&#xa;time_impact_minutes&#xa;itinerary_preserved_pct&#xa;is_recommended&#xa;rationale_text&#xa;status" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="150" y="610" width="180" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- RecoveryPlanChange -->
+        <mxCell id="db8" value="RecoveryPlanChange&#xa;─────────&#xa;id (PK)&#xa;recovery_plan_id (FK)&#xa;original_booking_id (FK)&#xa;change_type&#xa;new_start_time&#xa;new_end_time&#xa;new_cost&#xa;refund_from_original" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="450" y="610" width="180" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Preferences -->
+        <mxCell id="db9" value="Preferences&#xa;─────────&#xa;id (PK)&#xa;user_id (FK)&#xa;avoid_changing_hotels&#xa;protect_activities&#xa;avoid_overnight&#xa;minimize_changes&#xa;notification_flags" style="shape=table;startSize=30;container=0;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=10;html=1;whiteSpace=wrap;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="740" y="340" width="170" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Relationship Arrows -->
+        <!-- User 1:N Trip -->
+        <mxCell id="rel1" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db1" target="db2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Trip 1:N Booking -->
+        <mxCell id="rel2" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db2" target="db3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Booking N:N Dependency -->
+        <mxCell id="rel3" value="N:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db3" target="db4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Trip 1:N Disruption -->
+        <mxCell id="rel4" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db2" target="db5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Disruption 1:N ImpactResult -->
+        <mxCell id="rel5" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db5" target="db6" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Disruption 1:N RecoveryPlan -->
+        <mxCell id="rel6" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db5" target="db7" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- RecoveryPlan 1:N RecoveryPlanChange -->
+        <mxCell id="rel7" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;fontSize=9;fontStyle=1;" edge="1" source="db7" target="db8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- User 1:1 Preferences -->
+        <mxCell id="rel8" value="1:1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;dashed=1;fontSize=9;fontStyle=1;" edge="1" source="db1" target="db9" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="260" />
+              <mxPoint x="825" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ImpactResult -> Booking (affected) -->
+        <mxCell id="rel9" value="N:1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#d6b656;dashed=1;fontSize=9;" edge="1" source="db6" target="db3" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="290" />
+              <mxPoint x="655" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

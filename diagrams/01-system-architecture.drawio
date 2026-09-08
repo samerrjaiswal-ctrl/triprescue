@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-09-08T13:00:00.000Z" agent="TripRescue" version="21.0.0" type="device">
+  <diagram id="sys-arch" name="System Architecture">
+    <mxGraphModel dx="900" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- User -->
+        <mxCell id="n1" value="User" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="320" y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Next.js Frontend -->
+        <mxCell id="n2" value="Next.js Frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="120" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- API Layer -->
+        <mxCell id="n3" value="API Layer (REST)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="210" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- FastAPI Backend -->
+        <mxCell id="n4" value="FastAPI Backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="300" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Trip &amp; Booking Management -->
+        <mxCell id="n5" value="Trip &amp; Booking&#xa;Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="140" y="395" width="120" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Dependency Graph Engine -->
+        <mxCell id="n6" value="Dependency&#xa;Graph Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="310" y="395" width="120" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Disruption Service -->
+        <mxCell id="n7" value="Disruption&#xa;Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="480" y="395" width="120" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Impact Analysis -->
+        <mxCell id="n8" value="Impact Analysis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="490" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Recovery Engine -->
+        <mxCell id="n9" value="Recovery Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="580" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Scoring &amp; Ranking -->
+        <mxCell id="n10" value="Scoring &amp; Ranking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="670" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Recommendation -->
+        <mxCell id="n11" value="Recommendation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="760" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- User Approval &amp; Apply -->
+        <mxCell id="n12" value="User Approval&#xa;&amp; Apply Recovery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="850" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Trip Health &amp; Stable -->
+        <mxCell id="n13" value="Trip Health&#xa;Trip Stable ✓" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="940" width="130" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- AI Services (side) -->
+        <mxCell id="nai" value="AI Services&#xa;(LLM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0e6ff;strokeColor=#7c5caa;fontSize=10;fontStyle=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="520" width="110" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- PostgreSQL (side) -->
+        <mxCell id="ndb" value="PostgreSQL" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="520" width="90" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- External APIs (side) -->
+        <mxCell id="next" value="External APIs&#xa;(mocked)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="620" width="110" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Arrows: Main vertical flow -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n1" target="n2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n2" target="n3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n3" target="n4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend to 3 services -->
+        <mxCell id="e4a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;" edge="1" source="n4" target="n5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;" edge="1" source="n4" target="n6" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;" edge="1" source="n4" target="n7" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Services converge to Impact Analysis -->
+        <mxCell id="e5a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;" edge="1" source="n5" target="n8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;" edge="1" source="n6" target="n8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#666666;" edge="1" source="n7" target="n8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Impact to Recovery -->
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n8" target="n9" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Recovery to Scoring -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n9" target="n10" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scoring to Recommendation -->
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n10" target="n11" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Recommendation to Approval -->
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n11" target="n12" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Approval to Trip Stable -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="n12" target="n13" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Side connections: AI -->
+        <mxCell id="eai1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7c5caa;dashed=1;" edge="1" source="nai" target="n8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eai2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7c5caa;dashed=1;" edge="1" source="nai" target="n9" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eai3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7c5caa;dashed=1;" edge="1" source="nai" target="n11" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Side connections: DB -->
+        <mxCell id="edb1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;dashed=1;" edge="1" source="ndb" target="n5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6c8ebf;dashed=1;" edge="1" source="ndb" target="n8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Side connections: External APIs -->
+        <mxCell id="eext" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#999999;dashed=1;" edge="1" source="next" target="n9" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-09-08T13:00:00.000Z" agent="TripRescue" version="21.0.0" type="device">
+  <diagram id="demo-flow" name="Demo Input Output Flow">
+    <mxGraphModel dx="800" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- INPUT -->
+        <mxCell id="d1" value="INPUT&#xa;Manali Adventure Trip" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="160" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Trip Data -->
+        <mxCell id="d2" value="Trip Data&#xa;6 Bookings Loaded" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="265" y="120" width="130" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Connected Itinerary -->
+        <mxCell id="d3" value="Connected Itinerary&#xa;Dependency Graph Built" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="210" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Disruption -->
+        <mxCell id="d4" value="✈️ Disruption&#xa;Flight Delayed 5h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="255" y="305" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Impact Analysis -->
+        <mxCell id="d5" value="Impact Analysis&#xa;Propagate through Graph" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="400" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Dependency Ripple -->
+        <mxCell id="d6" value="Dependency Ripple&#xa;3 Critical · 2 At Risk" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="495" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Recovery Generation -->
+        <mxCell id="d7" value="Recovery Generation&#xa;3 Plans Created" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="590" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Constraint Validation -->
+        <mxCell id="d8" value="Constraint Validation&#xa;Budget + Preferences" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="685" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Recovery Ranking -->
+        <mxCell id="d9" value="Recovery Ranking&#xa;Score + Label Plans" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="780" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Recommended Plan -->
+        <mxCell id="d10" value="🏆 Recommended Plan&#xa;Best Overall ₹2,100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="875" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- User Approval -->
+        <mxCell id="d11" value="User Approval&#xa;Before → After Review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="255" y="970" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Recovery Applied -->
+        <mxCell id="d12" value="Recovery Applied&#xa;2 Changed · 4 Preserved" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1065" width="160" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Updated Itinerary -->
+        <mxCell id="d13" value="Updated Itinerary&#xa;Trip Health: 98%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="255" y="1160" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- OUTPUT -->
+        <mxCell id="d14" value="OUTPUT&#xa;Trip Back on Track ✓" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1255" width="160" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Arrows -->
+        <mxCell id="de1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d1" target="d2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d2" target="d3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d3" target="d4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d4" target="d5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d5" target="d6" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d6" target="d7" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d7" target="d8" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d8" target="d9" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d9" target="d10" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d10" target="d11" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d11" target="d12" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d12" target="d13" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#333333;" edge="1" source="d13" target="d14" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

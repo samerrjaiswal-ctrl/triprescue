@@ -1,0 +1,2117 @@
+This is a copy of a shared ChatGPT chat. It won't be added to memory.
+
+Report conversation
+
+Haan bhai 😂 meri galti — Phase 2 mein sirf 3 screens ke prompts diye the. Tujhe saari 12 screens ke detailed Stitch prompts chahiye. Ye le, direct copy-paste kar sakta hai.
+
+🧩 Phase 2 — Complete Google Stitch Screen Prompts
+
+Pehle Master Prompt run karna, jo maine upar diya tha. Uske baad har screen ka prompt separately use kar. Isse Stitch poore product mein consistent design maintain karega.
+
+01 — LANDING PAGE
+
+Design the Landing Page for "TripRescue", an intelligent Travel Disruption Recovery Engine.
+
+Purpose:
+The user should understand the product within 5 seconds.
+
+Hero headline:
+"When your trip breaks, we rebuild it."
+
+Subheadline:
+"TripRescue detects disruption ripple effects across your entire itinerary and creates personalized recovery plans in seconds."
+
+Primary CTA:
+"Create My Trip"
+
+Secondary CTA:
+"See How It Works"
+
+Hero visual:
+Create a sophisticated visual representation of a connected journey:
+Pune → Delhi → Chandigarh → Manali.
+
+Represent:
+Flight → Transfer → Hotel → Train → Transfer → Activity.
+
+Show a disruption propagating through the itinerary with subtle visual emphasis.
+
+Add a product preview/dashboard mockup showing:
+
+Trip Health
+Connected itinerary
+Disruption alert
+Recovery plans
+
+Add three feature sections:
+
+Detect disruptions
+Understand ripple effects
+Recover the trip
+
+Add a "How it works" section:
+Create Trip → Add Bookings → Detect Risk → Recover
+
+Add a trust/technology section mentioning:
+AI-powered
+Graph-based impact analysis
+Constraint-aware recovery planning
+
+Visual direction:
+Premium travel technology startup.
+Minimal but impressive.
+High-quality SaaS landing page.
+Avoid generic chatbot aesthetics.
+Use subtle travel imagery only where it adds value.
+Strong CTA hierarchy.
+Responsive desktop and mobile design.
+
+02 — CREATE TRIP
+
+Design the "Create Trip" screen for TripRescue.
+
+Purpose:
+Collect the minimum information needed to create a connected travel plan.
+
+Header:
+"Create your trip"
+
+Subtitle:
+"Tell us about your journey. We'll handle the complexity."
+
+Form sections:
+
+Trip Information:
+
+Trip Name
+Primary Destination
+Start Date
+End Date
+Number of Travelers
+
+Budget:
+
+Maximum additional recovery budget
+
+Recovery Preferences:
+
+Cheapest option
+Fastest option
+Best balance
+
+Preference toggles:
+
+Avoid changing hotels
+Protect important activities
+Avoid overnight travel
+Minimize number of booking changes
+
+Add a small explanation:
+"These preferences help our recovery engine rank the best recovery plan for you."
+
+Show a progress indicator:
+Step 1 of 3 — Trip Details
+
+Primary CTA:
+"Continue to Add Bookings"
+
+Secondary:
+"Save Draft"
+
+Design requirements:
+
+Clean form layout
+Large readable inputs
+Date pickers
+Select/dropdown components
+Toggle switches
+Helpful microcopy
+Responsive layout
+Premium travel SaaS aesthetic
+03 — ADD BOOKINGS
+
+🔥 Ye screen important hai because AI entry yahin se start hogi.
+
+Design the "Add Bookings" screen for TripRescue.
+
+Headline:
+"Build your connected itinerary"
+
+Subtitle:
+"Add your bookings manually or let AI extract them from your confirmations."
+
+Create two prominent options:
+
+OPTION A — Upload Confirmation
+
+Large drag-and-drop upload area.
+
+Text:
+"Drop your booking confirmation here"
+
+Supported:
+PDF, JPG, PNG
+
+Secondary text:
+"AI will automatically extract booking details."
+
+Include an upload button:
+"Upload Booking"
+
+OPTION B — Add Manually
+
+Create booking type cards:
+
+Flight
+Train
+Bus
+Hotel
+Transfer
+Activity
+Tour
+Event
+
+Each card should have an appropriate Lucide icon.
+
+After adding bookings, display them in a chronological list.
+
+Example:
+
+10:00 AM
+✈️ Pune → Delhi
+Flight
+Confirmed
+
+12:30 PM
+🚕 Airport → Hotel
+Transfer
+Confirmed
+
+2:00 PM
+🏨 Delhi Hotel
+Check-in
+Confirmed
+
+5:00 PM
+🚆 Delhi → Chandigarh
+Train
+Confirmed
+
+Show connection indicators between bookings.
+
+Include:
+"AI extracted" badges where applicable.
+
+Show progress:
+Step 2 of 3 — Bookings
+
+Primary CTA:
+"Build My Itinerary"
+
+Design the screen around the concept of connected bookings, not just a simple list.
+
+04 — TRIP DASHBOARD
+
+🔥 Main application screen.
+
+Design the main Trip Dashboard for TripRescue.
+
+Trip:
+"Manali Adventure"
+
+Dates:
+"12 Sep — 17 Sep"
+
+Route:
+"Pune → Delhi → Chandigarh → Manali"
+
+Create a desktop dashboard layout.
+
+Top header:
+
+Trip name
+Dates
+Traveler count
+Trip status
+Settings
+
+Left/main area:
+Create a highly polished connected itinerary timeline.
+
+Timeline:
+
+✈️ Flight
+Pune → Delhi
+10:00 AM → 12:00 PM
+Confirmed
+
+↓ connection
+
+🚕 Airport Transfer
+12:30 PM
+Confirmed
+
+↓ connection
+
+🏨 Delhi Hotel
+2:00 PM
+Confirmed
+
+↓ connection
+
+🚆 Train
+Delhi → Chandigarh
+5:00 PM
+Confirmed
+
+↓ connection
+
+🚕 Transfer
+Chandigarh → Manali
+11:00 PM
+Confirmed
+
+↓ connection
+
+🏔️ Activity
+10:00 AM
+Confirmed
+
+Right-side panel:
+"Trip Health"
+
+Show:
+92% Healthy
+
+Connections:
+4 Safe
+1 At Risk
+
+Upcoming:
+Next event in 2h 15m
+
+Risk:
+Low
+
+Add prominent button:
+"Simulate Disruption"
+
+Add secondary button:
+"Add Booking"
+
+Create a visually strong distinction between:
+Safe
+At Risk
+Disrupted
+Cancelled
+
+The timeline should feel like a dependency graph rather than a conventional calendar.
+
+Include subtle animations for status changes.
+
+05 — DISRUPTION CENTER
+
+Design the disruption input screen for TripRescue.
+
+Headline:
+"What's happening?"
+
+Subtitle:
+"Tell us about the disruption and we'll determine what it affects."
+
+Create a disruption selection interface.
+
+Disruption types:
+
+Flight delayed
+Flight cancelled
+Train delayed
+Train cancelled
+Hotel cancelled
+Transfer failed
+Activity cancelled
+Weather disruption
+Traveler changed plans
+Custom disruption
+
+Each should be represented as a clean interactive card.
+
+When "Flight delayed" is selected, show:
+
+Affected booking:
+"Pune → Delhi Flight"
+
+Delay:
+[ 5 hours ]
+
+Original arrival:
+12:00 PM
+
+New estimated arrival:
+5:00 PM
+
+Optional user message:
+"Tell us anything else"
+
+Example:
+"Airline says there may be additional delays."
+
+Show a live preview:
+"Potential impact will be analyzed across 5 connected bookings."
+
+Primary CTA:
+"Analyze Impact"
+
+Include a subtle warning that the system will analyze downstream dependencies.
+
+Make the interface fast and extremely clear during a stressful travel disruption.
+
+06 — IMPACT ANALYSIS
+
+🔥🔥 Judges ke liye major wow screen.
+
+Design the Impact Analysis screen for TripRescue.
+
+Scenario:
+The Pune → Delhi flight has been delayed by 5 hours.
+
+Top alert:
+
+"Your trip is at risk"
+
+Subheadline:
+"A 5-hour flight delay creates multiple downstream impacts."
+
+Main visual:
+Create a large connected dependency graph.
+
+Nodes:
+
+✈️ Flight
+Pune → Delhi
+🔴 DELAYED
++5 hours
+
+↓
+
+🚕 Airport Transfer
+🔴 MISSED
+
+↓
+
+🏨 Delhi Hotel
+🟡 AT RISK
+Late arrival
+
+↓
+
+🚆 Delhi → Chandigarh
+🔴 CONNECTION MISSED
+
+↓
+
+🚕 Chandigarh → Manali
+🔴 AFFECTED
+
+↓
+
+🏔️ Rohtang Activity
+🟡 AT RISK
+
+Use clear visual states:
+Red = disrupted
+Amber = at risk
+Green = safe
+
+Right panel:
+"Impact Summary"
+
+Show:
+3 Critical
+2 At Risk
+1 Safe
+
+Estimated additional cost:
+₹1,800–₹4,500
+
+Estimated time impact:
+1–5 hours
+
+Itinerary affected:
+5 / 6 bookings
+
+Add an expandable section:
+"Why are these bookings affected?"
+
+Explain dependency relationships in simple language.
+
+Example:
+"Your train departs before the delayed flight can reach the station."
+
+Primary CTA:
+"Generate Recovery Plans"
+
+Secondary CTA:
+"Back to Trip"
+
+The visual hierarchy should make the ripple effect immediately understandable.
+
+07 — RECOVERY PLANS
+
+🔥🔥🔥 Core screen.
+
+Design the Recovery Plans screen for TripRescue.
+
+Headline:
+"We found 3 ways to save your trip."
+
+Subheadline:
+"Plans are ranked using cost, time, convenience, itinerary preservation and your preferences."
+
+Display three large recovery plan cards.
+
+PLAN 1 — BEST OVERALL
+
+Badge:
+"Recommended"
+
+Additional cost:
+₹2,100
+
+Time impact:
++1.2 hours
+
+Itinerary preserved:
+92%
+
+Bookings changed:
+2
+
+Show benefits:
+✓ Hotel preserved
+✓ Important activity preserved
+✓ New train connection
+✓ New transfer
+
+Show:
+Convenience: 4.5/5
+
+CTA:
+"View Plan"
+
+PLAN 2 — CHEAPEST
+
+Badge:
+"Lowest Cost"
+
+Additional cost:
+₹900
+
+Time impact:
++3.5 hours
+
+Itinerary preserved:
+78%
+
+Bookings changed:
+3
+
+CTA:
+"View Plan"
+
+PLAN 3 — FASTEST
+
+Badge:
+"Minimum Time"
+
+Additional cost:
+₹4,500
+
+Time impact:
+0 hours
+
+Itinerary preserved:
+100%
+
+Bookings changed:
+1
+
+CTA:
+"View Plan"
+
+Add filter/sort controls:
+Cost
+Time
+Convenience
+Itinerary Preserved
+
+Add a recommendation explanation:
+
+"Best Overall is recommended because it preserves your hotel and important activity while keeping additional cost moderate."
+
+Include a small "How we decide" expandable section.
+
+The page should look like intelligent decision support, not an AI chat interface.
+
+08 — PLAN COMPARISON
+
+Design a detailed Recovery Plan Comparison screen.
+
+Headline:
+"Compare recovery options"
+
+Create a clear comparison table for three plans:
+
+                Cheapest | Best Overall | Fastest
+
+Additional Cost ₹900 ₹2,100 ₹4,500
+
+Time Lost 3.5h 1.2h 0h
+
+Bookings Changed 3 2 1
+
+Hotel Preserved No Yes Yes
+
+Activity Preserved No Yes Yes
+
+Convenience 3/5 4.5/5 5/5
+
+Itinerary Preserved 78% 92% 100%
+
+Add a visual score bar for each dimension.
+
+Highlight Best Overall with a recommended indicator.
+
+Below the table create:
+
+"Why we recommend Best Overall"
+
+Explain:
+"It costs ₹1,200 more than the cheapest option but saves approximately 2.3 hours and preserves your important activity."
+
+Add a mini timeline for each plan showing how the itinerary changes.
+
+Primary CTA:
+"Choose Best Overall"
+
+Secondary:
+"Choose Another Plan"
+
+Make the comparison extremely easy to understand at a glance.
+
+09 — RECOVERY PLAN DETAILS / APPLY
+
+Design the recovery plan confirmation screen for TripRescue.
+
+Headline:
+"Ready to recover your trip?"
+
+Show selected plan:
+"Best Overall"
+
+Summary:
+
+Additional cost:
+₹2,100
+
+Time impact:
++1.2 hours
+
+Itinerary preserved:
+92%
+
+Create a Before → After visualization.
+
+BEFORE:
+
+✈️ Flight
+↓
+🚕 Original Transfer
+↓
+🚆 Original Train
+↓
+🚕 Original Transfer
+↓
+🏨 Hotel
+
+AFTER:
+
+✈️ Delayed Flight
+↓
+🚕 New Transfer ✓
+↓
+🚆 New Train ✓
+↓
+🚕 New Transfer ✓
+↓
+🏨 Hotel ✓
+
+Highlight changed bookings.
+
+"Bookings that will change"
+
+Delhi → Chandigarh Train
+Chandigarh → Manali Transfer
+
+"Bookings that remain unchanged"
+
+Delhi Hotel
+Rohtang Activity
+
+Show refund/change information:
+
+Expected refunds:
+₹500
+
+Additional payments:
+₹2,600
+
+Net additional cost:
+₹2,100
+
+Primary CTA:
+"Confirm & Apply Recovery"
+
+Secondary:
+"Go Back"
+
+Include a confirmation dialog before final application.
+
+10 — UPDATED TRIP / SUCCESS
+
+🔥🔥 Demo ka payoff screen.
+
+Design the final Updated Trip screen after a recovery plan has been successfully applied.
+
+Top success state:
+
+"Your trip is back on track"
+
+Subtitle:
+"Recovery Plan successfully applied."
+
+Show Trip Health transformation:
+
+Before:
+92%
+
+After:
+98%
+
+Use a visual improvement indicator.
+
+Create the updated connected itinerary:
+
+✈️ Pune → Delhi
+Delayed but recovered
+
+↓
+
+🚕 New Airport Transfer
+Confirmed ✓
+
+↓
+
+🏨 Delhi Hotel
+Confirmed ✓
+
+↓
+
+🚆 Updated Train
+Confirmed ✓
+
+↓
+
+🚕 Updated Manali Transfer
+Confirmed ✓
+
+↓
+
+🏔️ Rohtang Activity
+Preserved ✓
+
+Add a "Recovery Summary":
+
+2 bookings changed
+4 bookings preserved
+₹2,100 additional cost
+1.2 hours additional travel time
+
+Add a green "Trip Stable" status.
+
+Primary CTA:
+"View Full Itinerary"
+
+Secondary CTA:
+"Download Recovery Summary"
+
+Also show a small explanation:
+
+"Your recovery plan preserved your hotel and important activity while avoiding the original missed connection."
+
+Make this screen feel rewarding and reassuring.
+
+11 — MY TRIPS
+
+Design the "My Trips" dashboard for TripRescue.
+
+Header:
+"My Trips"
+
+Subtitle:
+"Manage your journeys and recovery history."
+
+Create trip cards.
+
+Each card should show:
+Trip name
+Destination
+Dates
+Trip Health
+Number of bookings
+Current status
+
+Example:
+
+Manali Adventure
+Pune → Delhi → Chandigarh → Manali
+12 Sep — 17 Sep
+
+Trip Health: 98%
+Status: Recovered ✓
+
+Another example:
+
+Goa Weekend
+Pune → Goa
+20 Oct — 23 Oct
+
+Trip Health: 100%
+Status: Stable ✓
+
+Add search and filters:
+Upcoming
+Past
+Disrupted
+Recovered
+
+Primary CTA:
+"+ Create New Trip"
+
+Use a clean travel management dashboard.
+
+12 — SETTINGS
+
+Design the Settings screen for TripRescue.
+
+Sections:
+
+Recovery Preferences
+
+Preferred recovery strategy:
+○ Cheapest
+○ Fastest
+● Best Overall
+
+Maximum additional budget:
+₹5,000
+
+Trip protection:
+☑ Avoid changing hotels
+☑ Protect important activities
+☑ Avoid overnight travel
+☑ Minimize booking changes
+
+Notifications:
+
+☑ Connection risk alerts
+☑ Disruption alerts
+☑ Weather warnings
+☑ Recovery recommendations
+
+Traveler Preferences:
+
+Home city
+Preferred transport
+Accessibility requirements
+Important activities
+
+AI Preferences:
+
+☑ Explain why a recovery plan was recommended
+☑ Show cost breakdown
+☑ Show risk explanation
+
+Privacy:
+
+Manage account
+Data settings
+Delete trip data
+
+Primary CTA:
+"Save Preferences"
+
+The screen should be clean, trustworthy and easy to scan.
+
+🔥 BONUS — JO SCREEN MAIN SABSE ZYADA IMPORTANT MAANTA HOON
+
+Agar hackathon mein time kam ho, in screens ko perfect kar:
+
+04 Trip Dashboard
+       ↓
+05 Disruption
+       ↓
+06 Impact Analysis
+       ↓
+07 Recovery Plans
+       ↓
+08 Comparison
+       ↓
+09 Apply
+       ↓
+10 Updated Trip
+
+Ye 7-screen demo loop tumhara actual hackathon weapon hai.
+
+🧠 STITCH MEIN EXACTLY KYA KARNA HAI
+
+Main ye workflow use karunga:
+
+                 MASTER PROMPT
+                       ↓
+              Stitch Design System
+                       ↓
+       ┌───────────────┴───────────────┐
+       ↓                               ↓
+  Screen 01-04                    Screen 05-10
+       ↓                               ↓
+  Review & refine                 Review & refine
+       └───────────────┬───────────────┘
+                       ↓
+                     FIGMA
+                       ↓
+              Final visual polish
+                       ↓
+                 ANTIGRAVITY
+                       ↓
+            Next.js implementation
+                       ↓
+                 shadcn/ui
+                       ↓
+                Tailwind polish
+Aur ek bahut important cheez:
+
+Stitch se jo UI aaye usko exact screenshot ki tarah blindly code mat karwana.
+
+Antigravity ko bolna:
+
+"Preserve the visual design language, but convert it into reusable production-grade components."
+
+Phir components:
+
+TripTimeline
+BookingCard
+DependencyGraph
+ImpactNode
+ImpactSummary
+RecoveryPlanCard
+ComparisonTable
+TripHealth
+DisruptionModal
+RecoveryConfirmation
+
+Isse baad mein ek component change karoge toh poori app consistent rahegi.
+
+Aur bhai, Phase 2 ka final result 12 screens nahi, ek connected product flow hona chahiye — user landing se trip banaye, disruption create kare, ripple effect dekhe, recovery plan choose kare aur updated itinerary tak pahuche. यही judges ko end-to-end intelligence dikhayega.
+
+bhai stitch apne frontened tech ka knowledge hai na fluid,schacdn jo hamm bad me ide me add kareneg
+
+Haan bhai, exactly — but ek important distinction hai. 😎
+
+Stitch ko kya pata hota hai?
+
+Stitch UI/UX generate karne ke liye modern web patterns samajhta hai. Tu prompt mein bol sakta hai:
+
+Next.js
+React
+Tailwind CSS
+shadcn/ui-style components
+responsive web
+component-based design
+
+Lekin Stitch ko tumhare actual project ke installed shadcn components, exact Tailwind config, ya tumhare existing codebase ka knowledge nahi hota.
+
+Isliye best workflow ye hai:
+
+                 GOOGLE STITCH
+                      │
+                      │ UI/UX
+                      ▼
+             ┌─────────────────┐
+             │ Design language │
+             │ Layout          │
+             │ Components      │
+             │ UX flow         │
+             └────────┬────────┘
+                      │
+                      ▼
+                    FIGMA
+              polish / refine
+                      │
+                      ▼
+              ANTIGRAVITY / CURSOR
+                      │
+                      ▼
+              NEXT.JS + TYPESCRIPT
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+        Tailwind CSS       shadcn/ui
+             │                 │
+             └────────┬────────┘
+                      ▼
+               ACTUAL FRONTEND
+🔥 Matlab Stitch ka role:
+
+Stitch = Designer
+
+shadcn = Coded component library
+
+Tailwind = Styling system
+
+Next.js = Application framework
+
+Antigravity/Cursor = Developer
+
+Example
+
+Stitch mein tu bol:
+
+Create a premium recovery-plan card with recommended badge, cost, time impact, itinerary preservation, and Apply Plan button.
+
+Stitch visually design karega:
+
+┌─────────────────────────────┐
+│ 🏆 BEST OVERALL             │
+│                             │
+│ ₹2,100 additional           │
+│ +1.2h                       │
+│                             │
+│ Itinerary preserved 92%     │
+│ ████████████████░░          │
+│                             │
+│ ✓ Hotel preserved           │
+│ ✓ Activity preserved        │
+│                             │
+│       [ Apply Plan ]        │
+└─────────────────────────────┘
+
+Phir Antigravity mein:
+
+shadcn Card
+shadcn Badge
+shadcn Progress
+shadcn Button
+       +
+Tailwind
+       ↓
+Production component
+💡 Aur "Fluid" ki baat
+
+Agar tu Fluid UI / Fluid design system ki baat kar raha hai, toh usko bhi actual frontend implementation stage pe integrate karna better hai.
+
+Stitch ko bol sakte ho:
+
+"Use a fluid, responsive layout with adaptive spacing and typography."
+
+But actual implementation:
+
+Stitch
+ ↓
+Fluid responsive design concept
+ ↓
+Next.js
+ ↓
+Tailwind
+ ↓
+shadcn
+🏆 Mere hisaab se tumhare project ke liye best approach
+Stitch mein:
+
+Visual design + UX + layout + interaction concept
+
+Figma mein:
+
+Fine polish + design consistency
+
+Antigravity:
+
+Design → production code
+
+Next.js:
+
+Actual frontend
+
+shadcn:
+
+High-quality reusable components
+
+Tailwind:
+
+Exact styling
+
+FastAPI:
+
+Backend
+
+⚠️ Ek cheez avoid karna
+
+Stitch mein:
+
+"Build this using 37 specific libraries..."
+
+aisa mat bhar dena.
+
+Usko designer ki tarah treat kar.
+
+Aur Antigravity ko:
+
+"Here is the approved Stitch/Figma design. Recreate its visual language using Next.js + Tailwind + shadcn/ui, while making the implementation reusable and production-grade."
+
+Ye approach zyada clean rahega.
+
+Short mein: haan bhai, Stitch modern frontend/design concepts samajhta hai; lekin actual shadcn/Tailwind/Fluid implementation hum IDE mein karenge.
+
+bhaiabb ye sab dhay me rakh ke ek aur master prompt de aur screens genearte karne nahi bolna abhi me bad me har ek screen ka prompt dalunga 
+
+Bilkul bhai. Abhi sirf Master Prompt dena hai — screens generate nahi karne bolna. Isko pehle Stitch me daal, taaki woh poore product ka design system, UX language, architecture-level visual direction aur consistency samajh le. Baad mein tu ek-ek screen ka prompt dega.
+
+Design the complete UI/UX design system and product language for a premium travel-tech web application called:
+
+Travel Disruption Recovery Engine
+Tagline: “When your trip breaks, we rebuild it.”
+
+IMPORTANT:
+This is a MASTER DESIGN PROMPT ONLY.
+
+Do NOT generate, design, or output individual application screens yet.
+Do NOT create Landing, Dashboard, Create Trip, Disruption, Impact Analysis, Recovery Plans, Comparison, Apply Recovery, or any other specific screen.
+
+Your job at this stage is ONLY to understand and establish the product's:
+
+overall visual identity
+UX philosophy
+design system
+typography
+color system
+spacing system
+component language
+interaction principles
+responsive behavior
+information hierarchy
+navigation philosophy
+data visualization language
+status/risk language
+accessibility principles
+consistency rules
+
+Individual screen prompts will be provided separately later. Every future screen must follow this master design direction.
+
+1. PRODUCT PURPOSE
+
+This product helps travelers recover automatically when something goes wrong during a trip.
+
+A modern trip is not just a list of bookings.
+
+It is a connected system:
+
+Flight → Airport Transfer → Hotel → Train → Local Transfer → Activity → Event
+
+If one booking is delayed, cancelled, or missed, downstream bookings may also become affected.
+
+The product should therefore communicate:
+
+Detect → Understand Impact → Generate Recovery → Compare Options → Apply Recovery → Continue Trip
+
+The central product concept is:
+
+Trip Dependency Graph + Intelligent Recovery Engine
+
+The UI must make this concept visually understandable without requiring technical knowledge.
+
+The user should immediately feel:
+
+“Something went wrong, but this app understands what is affected and tells me how to fix my trip.”
+
+2. PRODUCT POSITIONING
+
+Position the product as:
+
+A travel resilience and recovery platform
+
+Not:
+
+a generic travel planner
+a normal booking website
+a chatbot
+a generic AI assistant
+a simple itinerary manager
+
+The visual identity should feel closer to:
+
+Premium travel SaaS + intelligent operations dashboard + calm emergency decision-support system
+
+It should feel:
+
+trustworthy
+intelligent
+calm
+fast
+organized
+premium
+highly actionable
+data-driven
+human-friendly
+
+Avoid making the product look like a futuristic AI experiment.
+
+3. CORE UX PRINCIPLE
+
+The most important UX principle is:
+
+“Reduce panic, increase clarity.”
+
+When a disruption happens, users may already be stressed.
+
+Therefore the interface should never feel chaotic.
+
+Instead:
+
+Problem → clearly identified
+Impact → clearly explained
+Options → clearly presented
+Recommendation → clearly highlighted
+Action → clearly available
+
+Never overwhelm the user with unnecessary information.
+
+Use progressive disclosure:
+
+show important information first
+allow deeper details when needed
+keep advanced technical information secondary
+4. CORE PRODUCT LANGUAGE
+
+Use consistent terminology throughout the product.
+
+Preferred terms:
+
+Trip Health
+Trip Status
+Disruption
+Direct Impact
+Downstream Impact
+Affected Booking
+Connection Risk
+Recovery Plan
+Best Overall
+Lowest Cost
+Minimum Time
+Itinerary Preserved
+Additional Cost
+Refund
+Change Fee
+Time Lost
+Bookings Changed
+Hotel Preserved
+Activity Preserved
+Safe
+At Risk
+Critical
+Recovered
+Trip Stable
+
+Avoid unnecessarily technical terms such as:
+
+graph traversal
+node propagation
+algorithm execution
+optimization engine
+dependency resolution
+
+The intelligence should be visible through the UX, not through technical jargon.
+
+5. VISUAL DIRECTION
+
+Create a sophisticated modern SaaS visual language.
+
+Desired characteristics:
+
+clean
+premium
+minimal
+structured
+high information density without feeling crowded
+generous whitespace
+strong hierarchy
+subtle depth
+restrained use of color
+elegant cards
+soft borders
+subtle shadows
+clear status indicators
+excellent typography
+
+The product should look credible enough for:
+
+a serious travel startup
+a travel operations platform
+a premium consumer application
+a hackathon-winning product demo
+
+Avoid:
+
+excessive gradients
+excessive glassmorphism
+neon cyberpunk styling
+cartoon illustrations
+overly playful travel graphics
+generic AI robot imagery
+chatbot-first layouts
+excessive decorative elements
+stock-photo-heavy layouts
+
+Travel imagery should be secondary.
+
+The product itself is the hero.
+
+6. COLOR SYSTEM
+
+Create a semantic color system rather than randomly assigning colors.
+
+Base UI:
+
+neutral/light background
+white or near-white surfaces
+dark high-contrast text
+subtle neutral borders
+restrained shadows
+
+Semantic states:
+
+Safe
+
+Use a calm green semantic treatment.
+
+At Risk
+
+Use amber/yellow semantic treatment.
+
+Critical
+
+Use red semantic treatment.
+
+Information
+
+Use blue semantic treatment.
+
+Recovery / Positive Outcome
+
+Use a positive green/teal-oriented semantic treatment.
+
+Colors should be:
+
+accessible
+restrained
+consistent
+meaningful
+
+Never use color as the only way to communicate status.
+
+Pair colors with:
+
+icons
+labels
+badges
+text
+visual indicators
+7. TYPOGRAPHY
+
+Use a modern professional sans-serif typography system.
+
+Prioritize:
+
+readability
+clear hierarchy
+excellent number readability
+strong dashboard scanning
+
+Establish consistent levels for:
+
+Display
+H1
+H2
+H3
+Section title
+Body
+Small text
+Caption
+Label
+Metric
+Navigation
+
+Large metrics such as:
+
+92% Trip Health
+
+₹1,850 Additional Cost
+
+5h 20m Time Impact
+
+should have strong visual hierarchy.
+
+Numbers must be extremely easy to scan.
+
+8. SPACING SYSTEM
+
+Use a consistent spacing scale.
+
+Prefer generous spacing around:
+
+major sections
+page headers
+dashboard modules
+important actions
+
+Use tighter spacing inside:
+
+compact cards
+table rows
+metadata groups
+booking information
+
+Avoid random spacing values.
+
+The interface should feel rhythmically consistent.
+
+9. CARD DESIGN
+
+Cards are an important part of the product.
+
+Use:
+
+subtle border
+small radius or moderately rounded corners
+very light shadow where appropriate
+clear internal hierarchy
+consistent padding
+
+Cards should not look like floating boxes everywhere.
+
+Use cards only where they improve grouping and comprehension.
+
+Important card types will eventually include:
+
+Booking Card
+Trip Health Card
+Disruption Card
+Impact Summary Card
+Recovery Plan Card
+Comparison Card
+Warning Card
+Recommendation Card
+
+Establish one consistent card language.
+
+10. TRIP TIMELINE LANGUAGE
+
+The itinerary timeline is one of the most important visual patterns in the entire application.
+
+It should communicate:
+
+Time + Sequence + Dependency + Status
+
+Example conceptual flow:
+
+Flight
+↓
+Airport Transfer
+↓
+Hotel
+↓
+Train
+↓
+Ground Transfer
+↓
+Activity
+
+Each itinerary item should be visually identifiable by:
+
+type
+time
+location
+status
+dependency
+risk
+
+The timeline must remain readable even when many bookings exist.
+
+Create a visual language that can distinguish:
+
+SAFE → AT RISK → CRITICAL → RECOVERED
+
+without making the timeline visually noisy.
+
+11. DEPENDENCY GRAPH LANGUAGE
+
+The dependency graph is a core differentiator.
+
+It should visually communicate ripple effects.
+
+Example:
+
+Flight Delayed
+↓
+Airport Transfer
+↓
+Hotel Check-in
+↓
+Train Connection
+↓
+Local Transfer
+↓
+Activity
+
+The visual language should support:
+
+connected nodes
+directional relationships
+status propagation
+affected nodes
+safe nodes
+recovery paths
+
+However:
+
+Do NOT make it look like a developer/network engineering diagram.
+
+It should feel like a polished travel decision visualization.
+
+Use:
+
+recognizable travel icons
+clean node design
+simple connections
+semantic status indicators
+readable labels
+12. DATA VISUALIZATION LANGUAGE
+
+The product will contain:
+
+trip health
+cost impact
+time impact
+connection risk
+recovery score
+itinerary preservation
+
+Create a consistent visualization language.
+
+Preferred:
+
+progress indicators
+compact charts
+horizontal comparison bars
+score indicators
+status rings
+timelines
+comparison tables
+
+Avoid unnecessary complex charts.
+
+Every visualization must answer a user question.
+
+Example:
+
+“Which recovery plan is better?”
+
+not:
+
+“Look at this fancy chart.”
+
+13. RECOVERY PLAN DESIGN LANGUAGE
+
+Recovery plans are decision-support objects.
+
+Users should be able to quickly understand:
+
+Plan identity
+
+Best Overall / Lowest Cost / Minimum Time
+
+Cost
+
+Additional cost
+
+Time
+
+Time lost / delay
+
+Itinerary
+
+Percentage preserved
+
+Changes
+
+Number of bookings changed
+
+Protection
+
+Hotel preserved / Activity preserved
+
+Convenience
+
+Convenience score
+
+Recommendation
+
+Why this plan is recommended
+
+The design should make comparison extremely easy.
+
+The recommended plan should be visually prominent but not manipulative.
+
+Users must still feel in control.
+
+14. RECOMMENDATION PHILOSOPHY
+
+AI recommendations should feel like:
+
+“Here is why we recommend this.”
+
+Not:
+
+“AI says this is best.”
+
+Use concise explanations such as:
+
+“Recommended because it adds only ₹850, keeps your hotel booking, and preserves your evening activity.”
+
+The interface should expose reasoning.
+
+Trust is more important than AI branding.
+
+Avoid:
+
+“Powered by AI” everywhere
+giant AI badges
+chatbot bubbles
+robot icons
+unexplained AI scores
+15. DISRUPTION UX
+
+Disruptions must be visually prominent but emotionally calm.
+
+The user should immediately understand:
+
+What happened?
+Which booking is affected?
+What else is affected?
+How serious is it?
+What can I do now?
+
+Use clear hierarchy:
+
+DISRUPTION
+
+Flight delayed by 5 hours
+
+↓
+
+DIRECT IMPACT
+
+Airport transfer
+
+↓
+
+DOWNSTREAM IMPACT
+
+Hotel check-in
+Train connection
+Local transfer
+Activity
+
+↓
+
+RECOVERY OPTIONS
+
+Plan A / Plan B / Plan C
+
+The interface should guide users toward action.
+
+16. STATUS SYSTEM
+
+Create a consistent status system.
+
+Primary states:
+
+Safe
+Trip element is currently feasible.
+
+At Risk
+Trip element may become problematic.
+
+Critical
+Trip element is no longer feasible without intervention.
+
+Disrupted
+The original booking has already been affected.
+
+Recovered
+A recovery action has successfully restored feasibility.
+
+Cancelled
+The booking is no longer active.
+
+Pending
+Decision or confirmation is required.
+
+Each status should have:
+
+semantic color
+icon
+text label
+consistent badge style
+17. NAVIGATION PHILOSOPHY
+
+The application should use a clean SaaS-style navigation structure.
+
+Potential primary areas:
+
+Dashboard
+My Trips
+Alerts
+Settings
+
+The navigation should always answer:
+
+“Where am I?”
+
+and
+
+“What should I do next?”
+
+The active navigation state must be obvious.
+
+Do not overload the navigation with too many items.
+
+18. RESPONSIVE DESIGN
+
+Design with a desktop-first SaaS dashboard mindset, but establish rules for responsive behavior.
+
+Desktop:
+
+spacious layouts
+multi-column dashboards
+comparison tables
+dependency visualization
+detailed itinerary
+
+Tablet:
+
+reduced columns
+reorganized cards
+scrollable comparison sections where necessary
+
+Mobile:
+
+prioritize critical information
+stack cards
+simplify graphs
+convert complex tables into comparison cards
+preserve primary actions
+maintain timeline readability
+
+Never simply shrink desktop layouts.
+
+Responsive behavior should be intentional.
+
+19. ACCESSIBILITY
+
+The product must follow strong accessibility principles.
+
+Ensure:
+
+sufficient contrast
+readable typography
+keyboard-friendly interaction
+visible focus states
+semantic status labels
+icons paired with text when necessary
+color is never the only status indicator
+touch targets are sufficiently large
+important actions are clearly distinguishable
+20. INTERACTION DESIGN
+
+Interactions should feel fast and predictable.
+
+Use subtle:
+
+hover states
+focus states
+transitions
+expansion
+collapse
+loading states
+confirmation states
+
+Avoid excessive animation.
+
+Use animation primarily to explain:
+
+status changes
+dependency relationships
+recovery transitions
+itinerary updates
+
+Example:
+
+Before recovery:
+
+Flight → Transfer → Hotel → Train → Activity
+
+After recovery:
+
+Flight → New Transfer → Hotel → New Train → Activity
+
+The change should be visually understandable.
+
+21. INFORMATION HIERARCHY
+
+Every page should follow approximately:
+
+Level 1
+
+What is happening?
+
+Level 2
+
+Why does it matter?
+
+Level 3
+
+What are my options?
+
+Level 4
+
+What should I choose?
+
+Level 5
+
+Additional details
+
+Never make users hunt for the primary action.
+
+22. ACTION HIERARCHY
+
+Primary actions should be visually dominant.
+
+Examples:
+
+Create Trip
+
+Analyze Impact
+
+Generate Recovery Plans
+
+Compare Plans
+
+Apply Recovery
+
+Secondary actions:
+
+Add Booking
+View Details
+Simulate Disruption
+Edit
+Cancel
+View Policy
+
+Dangerous/destructive actions should use appropriate confirmation patterns.
+
+23. FORMS
+
+Forms should feel simple and progressive.
+
+Use:
+
+clear labels
+helpful placeholders
+logical grouping
+validation
+contextual hints
+progressive disclosure
+
+For trip preferences, provide simple understandable controls such as:
+
+Recovery Strategy:
+
+Cheapest
+Fastest
+Best Balance
+
+Preferences:
+
+Avoid changing hotels
+Protect important activities
+Avoid overnight travel
+Minimize booking changes
+
+These should feel like traveler preferences, not technical optimization constraints.
+
+24. AI INPUT EXPERIENCE
+
+Users may provide:
+
+PDF tickets
+screenshots
+booking confirmations
+emails/text
+disruption messages
+
+The future UI should make AI extraction feel trustworthy.
+
+Use language such as:
+
+AI extracted booking details
+
+Then clearly show:
+
+extracted information
+confidence/verification where appropriate
+ability to edit incorrect information
+
+Never silently assume extracted information is correct.
+
+25. TRUST & TRANSPARENCY
+
+This product deals with travel decisions and potentially money.
+
+Therefore the interface must communicate trust.
+
+Important principles:
+
+Show calculations clearly.
+Show additional cost.
+Show refunds.
+Show change fees.
+Show assumptions.
+Explain recommendations.
+Allow users to review before applying.
+Never hide important consequences.
+
+Example:
+
+Additional Cost: ₹1,250
+
+New booking: ₹2,000
+Refund: −₹500
+Change fee: −₹250
+Net additional cost: ₹1,250
+
+The UI should make such calculations understandable.
+
+26. EMPTY, LOADING & ERROR STATES
+
+Create a consistent design philosophy for:
+
+no trips
+no bookings
+no disruptions
+analyzing impact
+generating recovery plans
+extracting booking information
+failed extraction
+unavailable data
+API errors
+recovery application in progress
+successful recovery
+
+Errors should be:
+
+clear
+actionable
+non-technical
+
+Never expose raw backend errors to users.
+
+27. DESIGN FOR THE DEMO
+
+This is a hackathon product.
+
+The UI should be extremely strong during a live demo.
+
+The core story must be visually obvious:
+
+Normal Trip
+↓
+Disruption
+↓
+Ripple Effect
+↓
+Recovery Plans
+↓
+Comparison
+↓
+Apply
+↓
+Trip Back on Track
+
+The design should make this transformation visually impressive while remaining professional.
+
+28. FUTURE IMPLEMENTATION CONTEXT
+
+The eventual frontend implementation will use:
+
+Next.js
+React
+TypeScript
+Tailwind CSS
+shadcn/ui
+Lucide React
+Zustand
+TanStack Query
+Recharts
+
+IMPORTANT:
+
+Do not design around proprietary UI components.
+
+The design should be implementable using standard modern web primitives and reusable components.
+
+Think in terms of reusable components such as:
+
+AppShell
+Sidebar
+Header
+TripTimeline
+ItineraryNode
+DependencyGraph
+BookingCard
+StatusBadge
+RiskIndicator
+TripHealth
+ImpactSummary
+RecoveryPlanCard
+PlanComparison
+DisruptionAlert
+ConfirmationDialog
+LoadingState
+EmptyState
+
+Future implementation should be able to translate the design into shadcn/ui + Tailwind without losing the visual identity.
+
+29. COMPONENT CONSISTENCY
+
+Establish rules so the same component always looks and behaves the same way.
+
+For example:
+
+Every status badge should share:
+
+typography
+padding
+radius
+icon placement
+semantic colors
+
+Every booking card should share:
+
+header structure
+booking type icon
+timing hierarchy
+location hierarchy
+status treatment
+action placement
+
+Every recovery plan should share:
+
+plan identity
+cost
+time
+preservation
+changes
+recommendation
+primary CTA
+
+Consistency is more important than visual novelty.
+
+30. DESIGN PERSONALITY
+
+The overall personality should be:
+
+Calm + Intelligent + Reliable + Premium + Action-Oriented
+
+Imagine:
+
+A premium travel product combined with the clarity of a modern operations dashboard.
+
+Not:
+“AI chatbot for travel.”
+
+Instead:
+
+“Your intelligent travel recovery command center.”
+
+31. DESIGN NORTH STAR
+
+Every future screen must answer these questions:
+
+Is the trip okay?
+If not, what went wrong?
+What else is affected?
+How serious is the impact?
+What recovery options exist?
+Which option is recommended?
+Why is it recommended?
+What will change?
+What will it cost?
+Can I safely apply it?
+
+The UI should progressively answer these questions.
+
+32. FUTURE SCREEN PROMPTS
+
+Do NOT generate any screens from this prompt.
+
+This master prompt only establishes the design foundation.
+
+Later, when an individual screen prompt is provided, use this master specification as the source of truth.
+
+Every future screen must:
+
+belong to the same visual system
+use the same typography
+use the same semantic colors
+use the same spacing philosophy
+use the same card language
+use the same status language
+use the same navigation language
+use the same interaction principles
+preserve the same premium travel-tech personality
+
+The final product must feel like one cohesive application, not a collection of separately designed screens.
+
+FINAL DESIGN GOAL
+
+Create a product identity that makes the following statement visually obvious:
+
+“When your trip breaks, we rebuild it.”
+
+The interface should make complex travel disruptions feel simple, understandable, and actionable.
+
+The user should feel:
+
+“I don't need to figure out what broke. This system already understands my trip, shows me the ripple effects, gives me the best recovery options, and lets me get back on track.”
+
+Bhai, ye master prompt pehle Stitch ko de. Isme maine intentionally kisi specific screen ko generate karne ko nahi bola. Ab jo bhi next screen ka prompt banayenge, woh isi design system ko follow karega—isse 10–12 screens alag-alag banne ke baad bhi ek hi product jaise lagenge.
