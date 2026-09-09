@@ -1,86 +1,108 @@
 from fastapi import APIRouter, HTTPException
 from typing import Optional, Dict, Any
 from app.schemas import DisruptionCreate
+from app.engine.graph import build_manali_demo_graph, DependencyGraph
+from app.engine.models import DisruptionImpactSummary
 
 router = APIRouter(tags=["Disruptions"])
+
+# Active in-memory graph state for demo
+active_graph: DependencyGraph = build_manali_demo_graph()
+last_summary: Optional[DisruptionImpactSummary] = None
 
 # POST /api/trips/{trip_id}/disruptions - Report disruption
 @router.post("/trips/{trip_id}/disruptions", status_code=201)
 async def report_disruption(trip_id: str, disruption: DisruptionCreate):
     """
     Report or simulate a disruption on a booking.
-    TODO: Create disruption event, trigger cascade evaluation on dependency graph.
+    Executes real-time Dependency Graph Topological Ripple Propagation.
     """
+    global active_graph, last_summary
+
+    # Fresh graph reset for the calculation
+    active_graph = build_manali_demo_graph()
+
+    # Default to bk_1 (flight) if booking_id isn't directly recognized
+    booking_id = disruption.booking_id if disruption.booking_id in active_graph.nodes else "bk_1"
+    delay_mins = disruption.delay_minutes or 300
+
+    # Run Topological Ripple Propagation Algorithm
+    last_summary = active_graph.propagate_disruption(
+        disrupted_booking_id=booking_id,
+        delay_minutes=delay_mins,
+        disruption_type=disruption.type or "DELAY",
+        disruption_id="dis_001",
+    )
+
     return {
-        "disruption_id": "dis_001",
+        "disruption_id": last_summary.disruption_id,
         "trip_id": trip_id,
-        "booking_id": disruption.booking_id,
+        "booking_id": booking_id,
         "type": disruption.type,
-        "delay_minutes": disruption.delay_minutes,
-        "severity": "MAJOR",
+        "delay_minutes": delay_mins,
+        "severity": "CRITICAL" if last_summary.critical_count > 0 else "MAJOR",
         "status": "ACTIVE",
+        "trip_health_after": last_summary.trip_health_after,
+        "affected_count": last_summary.total_affected,
+        "critical_count": last_summary.critical_count,
+        "at_risk_count": last_summary.at_risk_count,
+        "total_financial_risk": last_summary.total_financial_risk,
     }
+
 
 # GET /api/disruptions/{disruption_id}/impact - Impact Analysis
 @router.get("/disruptions/{disruption_id}/impact")
 async def get_impact_analysis(disruption_id: str):
     """
     Get graph impact analysis results and AI explanations for downstream cascade.
-    TODO: Query Dependency Graph Engine for affected nodes, slack times, and LLM generated headline.
+    Queries the Dependency Graph Engine for affected nodes, slack times, and blast radius.
     """
+    global active_graph, last_summary
+
+    # Ensure propagation has run at least once
+    if last_summary is None:
+        active_graph = build_manali_demo_graph()
+        last_summary = active_graph.propagate_disruption(
+            disrupted_booking_id="bk_1",
+            delay_minutes=300,
+            disruption_type="DELAY",
+            disruption_id=disruption_id,
+        )
+
     return {
-        "disruption_id": disruption_id,
+        "disruption_id": last_summary.disruption_id,
+        "trip_id": last_summary.trip_id,
+        "disrupted_booking_id": last_summary.disrupted_booking_id,
+        "delay_minutes": last_summary.delay_minutes,
+        "trip_health_before": last_summary.trip_health_before,
+        "trip_health_after": last_summary.trip_health_after,
+        "summary": {
+            "critical_count": last_summary.critical_count,
+            "at_risk_count": last_summary.at_risk_count,
+            "safe_count": last_summary.safe_count,
+            "total_affected": last_summary.total_affected,
+            "total_bookings": last_summary.total_bookings,
+            "total_financial_risk": last_summary.total_financial_risk,
+            "estimated_cost_range": {"min": 1800, "max": 4500},
+            "estimated_time_impact_hours": {"min": 1.2, "max": 5.0},
+        },
+        "headline": last_summary.headline,
+        "summary_text": last_summary.summary_text,
         "impact_results": [
             {
-                "booking_id": "bk_transfer_001",
-                "booking_label": "Airport Transfer",
-                "booking_type": "TRANSFER",
-                "severity": "CRITICAL",
-                "slack_minutes": -270,
-                "reason_text": "Transfer at 12:30 PM missed — flight arrives at 5:00 PM",
-            },
-            {
-                "booking_id": "bk_train_001",
-                "booking_label": "Delhi → Chandigarh Train",
-                "booking_type": "TRAIN",
-                "severity": "CRITICAL",
-                "slack_minutes": -120,
-                "reason_text": "Train departs at 5:00 PM — impossible to reach station from airport",
-            },
-            {
-                "booking_id": "bk_bus_001",
-                "booking_label": "Chandigarh → Manali Volvo",
-                "booking_type": "BUS",
-                "severity": "CRITICAL",
-                "slack_minutes": -30,
-                "reason_text": "Missed train means missing the 10:30 PM Volvo bus",
-            },
-            {
-                "booking_id": "bk_hotel_001",
-                "booking_label": "Solang Valley Resort",
-                "booking_type": "HOTEL",
-                "severity": "AT_RISK",
-                "slack_minutes": 0,
-                "reason_text": "Check-in delayed past midnight — late check-in notice required",
-            },
-            {
-                "booking_id": "bk_activity_001",
-                "booking_label": "Paragliding Session",
-                "booking_type": "ACTIVITY",
-                "severity": "AT_RISK",
-                "slack_minutes": 0,
-                "reason_text": "Morning slot at risk if arrival delayed past 9:00 AM",
-            },
+                "booking_id": r.booking_id,
+                "booking_label": r.booking_label,
+                "booking_type": r.booking_type,
+                "severity": r.severity.value,
+                "slack_minutes": r.slack_minutes,
+                "reason_text": r.reason_text,
+                "original_start": r.original_start,
+                "effective_upstream_end": r.effective_upstream_end,
+                "required_buffer": r.required_buffer,
+                "cost_at_risk": r.cost_at_risk,
+                "is_non_refundable": r.is_non_refundable,
+            }
+            for r in last_summary.impact_results
         ],
-        "summary": {
-            "critical_count": 3,
-            "at_risk_count": 2,
-            "safe_count": 0,
-            "total_affected": 5,
-            "total_bookings": 6,
-            "estimated_cost_range": {"min": 1800, "max": 4500},
-            "estimated_time_impact_hours": {"min": 1, "max": 5},
-        },
-        "headline": "Your trip is at risk",
-        "summary_text": "A 5-hour flight delay creates multiple downstream impacts across your connected itinerary.",
+        "graph_topology": last_summary.graph_topology,
     }
