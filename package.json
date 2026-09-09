@@ -1,0 +1,9 @@
+{
+  "name": "triprescue-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix triprescue-app run dev",
+    "build": "npm --prefix triprescue-app run build",
+    "start": "npm --prefix triprescue-app run start"
+  }
+}

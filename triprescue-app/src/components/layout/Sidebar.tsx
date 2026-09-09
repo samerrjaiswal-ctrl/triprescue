@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { TripRescueIcon, TripRescueWordmark } from '@/components/ui/TripRescueBrand';
 import {
   LayoutDashboard,
   AlertTriangle,
@@ -11,26 +12,60 @@ import {
   Columns,
   Map,
   Settings,
-  Shield,
   ChevronLeft,
   ChevronRight,
   Activity,
   PlusCircle,
 } from 'lucide-react';
 
-const navItems = [
-  { label: 'Dashboard', href: '/trips/trip_001/dashboard', icon: LayoutDashboard },
-  { label: 'Disruption Center', href: '/trips/trip_001/disruption', icon: AlertTriangle, badge: 'Simulate' },
-  { label: 'Impact Analysis', href: '/trips/trip_001/impact', icon: GitFork },
-  { label: 'Recovery Plans', href: '/trips/trip_001/recovery-plans', icon: Sparkles },
-  { label: 'Plan Comparison', href: '/trips/trip_001/compare', icon: Columns },
-  { label: 'My Trips', href: '/my-trips', icon: Map },
-  { label: 'Settings', href: '/settings', icon: Settings },
-];
-
 export default function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+
+  // Extract tripId from URL if inside a /trips/[tripId] route
+  const tripMatch = pathname?.match(/\/trips\/([^/]+)/);
+  const currentTripId = tripMatch ? tripMatch[1] : null;
+
+  const tripPrefix = currentTripId ? `/trips/${currentTripId}` : null;
+
+  const navItems = [
+    {
+      label: 'Dashboard',
+      href: tripPrefix ? `${tripPrefix}/dashboard` : '/my-trips',
+      icon: LayoutDashboard,
+    },
+    {
+      label: 'Disruption Center',
+      href: tripPrefix ? `${tripPrefix}/disruption` : '/my-trips',
+      icon: AlertTriangle,
+    },
+    {
+      label: 'Impact Analysis',
+      href: tripPrefix ? `${tripPrefix}/impact` : '/my-trips',
+      icon: GitFork,
+    },
+    {
+      label: 'Recovery Plans',
+      href: tripPrefix ? `${tripPrefix}/recovery-plans` : '/my-trips',
+      icon: Sparkles,
+    },
+    {
+      label: 'Plan Comparison',
+      href: tripPrefix ? `${tripPrefix}/compare` : '/my-trips',
+      icon: Columns,
+    },
+    {
+      label: 'My Trips',
+      href: '/my-trips',
+      icon: Map,
+    },
+    {
+      label: 'Settings',
+      href: '/settings',
+      icon: Settings,
+    },
+  ];
+
 
   return (
     <aside
@@ -41,18 +76,9 @@ export default function Sidebar() {
       {/* Brand Header */}
       <div className="flex items-center justify-between px-5 h-20 border-b border-[#162035]">
         <Link href="/" className="flex items-center gap-3 overflow-hidden">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/25 flex-shrink-0">
-            <Shield size={22} className="text-white" />
-          </div>
+          <TripRescueIcon size={38} />
           {!collapsed && (
-            <div>
-              <span className="font-extrabold text-base tracking-tight text-white block leading-none">
-                TripRescue
-              </span>
-              <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mt-1">
-                Mission Control
-              </span>
-            </div>
+            <TripRescueWordmark size="sm" />
           )}
         </Link>
         <button
@@ -95,12 +121,6 @@ export default function Sidebar() {
                   <span className="text-sm tracking-tight">{item.label}</span>
                 )}
               </div>
-
-              {!collapsed && item.badge && (
-                <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30">
-                  {item.badge}
-                </span>
-              )}
             </Link>
           );
         })}

@@ -1,81 +1,110 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import {
   ArrowLeft,
-  Check,
-  X,
+  CheckCircle2,
+  XCircle,
   Sparkles,
   ArrowRight,
+  Shield,
   Clock,
   Coins,
-  ShieldCheck,
-  Star,
 } from 'lucide-react';
 import AppShell from '@/components/layout/AppShell';
-import { demoTrip } from '@/lib/data';
+import { fetchTrip } from '@/lib/api';
 
-const comparisonDimensions = [
+interface ComparisonRow {
+  dimension: string;
+  cheapest: string;
+  bestOverall: string;
+  fastest: string;
+  highlightBest?: boolean;
+}
+
+const comparisonData: ComparisonRow[] = [
   {
-    name: 'Net Additional Expense',
-    cheapest: '₹850',
-    best: '₹2,100',
-    fastest: '₹4,600',
+    dimension: 'Additional Out-of-Pocket',
+    cheapest: '₹1,200',
+    bestOverall: '₹2,600',
+    fastest: '₹4,800',
     highlightBest: true,
   },
   {
-    name: 'Arrival Delay in Manali',
-    cheapest: '+4.5 hours delay',
-    best: '+1.2 hours delay',
+    dimension: 'Total Vacation Delay',
+    cheapest: '+5.0 hours',
+    bestOverall: '+1.5 hours',
     fastest: '0 hours (On Time)',
     highlightBest: true,
   },
   {
-    name: 'Itinerary Preserved',
-    cheapest: '76% Preserved',
-    best: '94% Preserved',
-    fastest: '100% Preserved',
+    dimension: 'Itinerary Preservation',
+    cheapest: '75%',
+    bestOverall: '92%',
+    fastest: '100%',
     highlightBest: true,
   },
   {
-    name: 'The Imperial Hotel Stay',
-    cheapest: false,
-    best: true,
-    fastest: true,
+    dimension: 'Non-Refundable Hotel',
+    cheapest: 'Preserved',
+    bestOverall: 'Preserved',
+    fastest: 'Preserved',
     highlightBest: true,
   },
   {
-    name: '10:00 AM Paragliding Session',
-    cheapest: false,
-    best: true,
-    fastest: true,
+    dimension: 'Protected Activities',
+    cheapest: 'Rescheduled',
+    bestOverall: 'Preserved (100%)',
+    fastest: 'Preserved (100%)',
     highlightBest: true,
   },
   {
-    name: 'Convenience Score',
-    cheapest: '3.2 / 5.0',
-    best: '4.8 / 5.0',
-    fastest: '5.0 / 5.0',
-    highlightBest: true,
+    dimension: 'Transit Comfort Level',
+    cheapest: 'Standard Rail/Bus',
+    bestOverall: 'Express Air/Cab',
+    fastest: 'Direct Premium Flight',
+    highlightBest: false,
   },
   {
-    name: 'Bookings Modified',
-    cheapest: '3 Bookings Changed',
-    best: '2 Bookings Changed',
-    fastest: '2 Bookings Changed',
+    dimension: 'Booking Changes Required',
+    cheapest: '3 Segments Rebooked',
+    bestOverall: '2 Segments Rebooked',
+    fastest: '1 Segment Rebooked',
     highlightBest: false,
   },
 ];
 
 export default function PlanComparisonPage() {
+  const params = useParams();
+  const tripId = (params?.tripId as string) || '';
+
+  const [trip, setTrip] = useState<any>(null);
+
+  useEffect(() => {
+    async function load() {
+      if (!tripId) return;
+      try {
+        const res = await fetchTrip(tripId);
+        if (res) setTrip(res.trip || res);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    load();
+  }, [tripId]);
+
+  const tripName = trip?.name || 'Comparison Matrix';
+
   return (
-    <AppShell activeTripId={demoTrip.id} activeTripName={demoTrip.name}>
+    <AppShell activeTripId={tripId} activeTripName={tripName}>
       <div className="space-y-8 max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <Link
-              href="/trips/trip_001/recovery-plans"
+              href={`/trips/${tripId}/recovery-plans`}
               className="inline-flex items-center gap-1.5 text-xs text-[#94a3b8] hover:text-white mb-2 transition-colors"
             >
               <ArrowLeft size={14} /> Back to Recovery Plans
@@ -89,7 +118,7 @@ export default function PlanComparisonPage() {
           </div>
 
           <Link
-            href="/trips/trip_001/confirm?plan=plan_best"
+            href={`/trips/${tripId}/confirm?plan=plan_best`}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-900/40 transition-all hover:scale-105"
           >
             <Sparkles size={14} /> Select Best Overall
@@ -106,66 +135,41 @@ export default function PlanComparisonPage() {
                 </th>
                 <th className="py-4 px-4 text-center w-1/4">
                   <div className="text-sm font-bold text-emerald-400">Cheapest</div>
-                  <div className="text-[11px] text-[#94a3b8]">Overnight Bus</div>
+                  <div className="text-[11px] text-[#94a3b8]">Budget Connection</div>
                 </th>
-                <th className="py-4 px-4 text-center w-1/4 bg-blue-600/10 rounded-t-2xl border-x border-t border-blue-500/40">
-                  <div className="inline-flex items-center gap-1 text-xs font-extrabold text-blue-400 uppercase tracking-widest px-2 py-0.5 rounded-full bg-blue-500/20 mb-1">
-                    <Sparkles size={11} /> Recommended
-                  </div>
-                  <div className="text-sm font-black text-white">Best Overall</div>
-                  <div className="text-[11px] text-blue-200">Vande Bharat & Cab</div>
+                <th className="py-4 px-4 text-center w-1/4 bg-blue-600/10 rounded-t-2xl border-t border-x border-blue-500/40 relative">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[9px] font-black uppercase tracking-wider shadow">
+                    Optimal
+                  </span>
+                  <div className="text-sm font-black text-blue-400">Best Overall</div>
+                  <div className="text-[11px] text-[#94a3b8]">Balanced Trade-off</div>
                 </th>
                 <th className="py-4 px-4 text-center w-1/4">
                   <div className="text-sm font-bold text-purple-400">Fastest</div>
-                  <div className="text-[11px] text-[#94a3b8]">Direct Flight</div>
+                  <div className="text-[11px] text-[#94a3b8]">Direct Express</div>
                 </th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-[#1c2942] text-sm">
-              {comparisonDimensions.map((row, idx) => (
-                <tr key={idx} className="hover:bg-[#101729]/50 transition-colors">
-                  <td className="py-4 px-4 font-semibold text-white">
-                    {row.name}
+            <tbody className="divide-y divide-[#1c2942]/60 text-xs">
+              {comparisonData.map((row, idx) => (
+                <tr
+                  key={row.dimension}
+                  className={`hover:bg-[#101729]/50 transition-colors ${
+                    idx % 2 === 0 ? 'bg-[#080d1a]/40' : ''
+                  }`}
+                >
+                  <td className="py-3.5 px-4 font-semibold text-white">
+                    {row.dimension}
                   </td>
-
-                  {/* Cheapest */}
-                  <td className="py-4 px-4 text-center text-[#cbd5e1]">
-                    {typeof row.cheapest === 'boolean' ? (
-                      row.cheapest ? (
-                        <Check size={18} className="text-emerald-400 mx-auto" />
-                      ) : (
-                        <X size={18} className="text-rose-400 mx-auto" />
-                      )
-                    ) : (
-                      row.cheapest
-                    )}
+                  <td className="py-3.5 px-4 text-center font-mono text-[#cbd5e1]">
+                    {row.cheapest}
                   </td>
-
-                  {/* Best Overall (Highlighted column) */}
-                  <td className="py-4 px-4 text-center font-bold text-white bg-blue-600/10 border-x border-blue-500/40">
-                    {typeof row.best === 'boolean' ? (
-                      row.best ? (
-                        <Check size={18} className="text-emerald-400 mx-auto" />
-                      ) : (
-                        <X size={18} className="text-rose-400 mx-auto" />
-                      )
-                    ) : (
-                      <span className="text-blue-300">{row.best}</span>
-                    )}
+                  <td className="py-3.5 px-4 text-center font-mono font-bold text-blue-300 bg-blue-600/10 border-x border-blue-500/40">
+                    {row.bestOverall}
                   </td>
-
-                  {/* Fastest */}
-                  <td className="py-4 px-4 text-center text-[#cbd5e1]">
-                    {typeof row.fastest === 'boolean' ? (
-                      row.fastest ? (
-                        <Check size={18} className="text-emerald-400 mx-auto" />
-                      ) : (
-                        <X size={18} className="text-rose-400 mx-auto" />
-                      )
-                    ) : (
-                      row.fastest
-                    )}
+                  <td className="py-3.5 px-4 text-center font-mono text-[#cbd5e1]">
+                    {row.fastest}
                   </td>
                 </tr>
               ))}
@@ -176,7 +180,7 @@ export default function PlanComparisonPage() {
                 <td className="py-6 px-4" />
                 <td className="py-6 px-4 text-center">
                   <Link
-                    href="/trips/trip_001/confirm?plan=plan_cheapest"
+                    href={`/trips/${tripId}/confirm?plan=plan_cheapest`}
                     className="inline-block py-2 px-4 rounded-xl text-xs font-bold text-[#94a3b8] hover:text-white bg-[#141e33] border border-[#1e2d4d] transition-all"
                   >
                     Select Plan
@@ -184,7 +188,7 @@ export default function PlanComparisonPage() {
                 </td>
                 <td className="py-6 px-4 text-center bg-blue-600/10 rounded-b-2xl border-x border-b border-blue-500/40">
                   <Link
-                    href="/trips/trip_001/confirm?plan=plan_best"
+                    href={`/trips/${tripId}/confirm?plan=plan_best`}
                     className="inline-block py-2.5 px-5 rounded-xl text-xs font-black text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-900/50 transition-all hover:scale-105"
                   >
                     Choose Best Overall
@@ -192,7 +196,7 @@ export default function PlanComparisonPage() {
                 </td>
                 <td className="py-6 px-4 text-center">
                   <Link
-                    href="/trips/trip_001/confirm?plan=plan_fastest"
+                    href={`/trips/${tripId}/confirm?plan=plan_fastest`}
                     className="inline-block py-2 px-4 rounded-xl text-xs font-bold text-[#94a3b8] hover:text-white bg-[#141e33] border border-[#1e2d4d] transition-all"
                   >
                     Select Plan

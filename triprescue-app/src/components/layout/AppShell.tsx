@@ -21,8 +21,8 @@ interface AppShellProps {
 
 export default function AppShell({
   children,
-  activeTripId = 'trip_001',
-  activeTripName = 'Manali Adventure',
+  activeTripId,
+  activeTripName,
 }: AppShellProps) {
   return (
     <div className="flex min-h-screen bg-[#080c14] text-[#f8fafc]">
@@ -41,33 +41,50 @@ export default function AppShell({
             >
               Trips
             </Link>
-            <ChevronRight size={14} className="text-[#475569]" />
-            <div className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#111827] border border-[#1e293b]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-semibold text-white">{activeTripName}</span>
-              <span className="text-[10px] text-[#64748b] font-mono">
-                ({activeTripId})
-              </span>
-            </div>
+            {activeTripName && (
+              <>
+                <ChevronRight size={14} className="text-[#475569]" />
+                <div className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#111827] border border-[#1e293b]">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-semibold text-white">{activeTripName}</span>
+                  {activeTripId && (
+                    <span className="text-[10px] text-[#64748b] font-mono">
+                      ({activeTripId})
+                    </span>
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
-          {/* Right: Emergency Simulator & User Tools */}
+          {/* Right: Actions & User Tools */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/trips/trip_001/disruption"
-              className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 transition-all"
-            >
-              <AlertTriangle size={14} className="text-rose-400" />
-              <span>Simulate Ripple Disruption</span>
-            </Link>
+            {activeTripId ? (
+              <>
+                <Link
+                  href={`/trips/${activeTripId}/disruption`}
+                  className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 transition-all"
+                >
+                  <AlertTriangle size={14} className="text-rose-400" />
+                  <span>Report Disruption</span>
+                </Link>
 
-            <Link
-              href="/trips/trip_001/recovery-plans"
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 transition-all"
-            >
-              <Zap size={14} className="text-blue-400" />
-              <span>AI Recovery Engine</span>
-            </Link>
+                <Link
+                  href={`/trips/${activeTripId}/recovery-plans`}
+                  className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 transition-all"
+                >
+                  <Zap size={14} className="text-blue-400" />
+                  <span>Recovery Plans</span>
+                </Link>
+              </>
+            ) : (
+              <Link
+                href="/create-trip"
+                className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 transition-all"
+              >
+                <span>+ Protect New Trip</span>
+              </Link>
+            )}
 
             {/* Notification Bell */}
             <div className="relative p-2 rounded-xl bg-[#101729] border border-[#162035] text-[#94a3b8] hover:text-white cursor-pointer">

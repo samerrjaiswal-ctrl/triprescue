@@ -16,12 +16,14 @@ import {
 } from 'lucide-react';
 import AppShell from '@/components/layout/AppShell';
 
+import { createTrip } from '@/lib/api';
+
 export default function CreateTripPage() {
   const router = useRouter();
-  const [tripName, setTripName] = useState('Manali Adventure');
-  const [destination, setDestination] = useState('Manali, Himachal Pradesh');
-  const [startDate, setStartDate] = useState('2026-09-12');
-  const [endDate, setEndDate] = useState('2026-09-17');
+  const [tripName, setTripName] = useState('');
+  const [destination, setDestination] = useState('');
+  const [startDate, setStartDate] = useState('2026-09-15');
+  const [endDate, setEndDate] = useState('2026-09-20');
   const [travelers, setTravelers] = useState(2);
   const [budgetCeiling, setBudgetCeiling] = useState(5000);
   const [strategy, setStrategy] = useState<'best_overall' | 'cheapest' | 'fastest'>('best_overall');
@@ -30,13 +32,48 @@ export default function CreateTripPage() {
   const [protectActivities, setProtectActivities] = useState(true);
   const [avoidOvernight, setAvoidOvernight] = useState(true);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/trips/trip_001/add-bookings');
+    if (!tripName.trim() || !destination.trim() || !startDate || !endDate) {
+      setError('Please fill in trip name, destination, and dates.');
+      return;
+    }
+    setIsSubmitting(true);
+    setError('');
+    try {
+      const res = await createTrip({
+        name: tripName.trim(),
+        destination: destination.trim(),
+        start_date: startDate,
+        end_date: endDate,
+        traveler_count: travelers,
+        budget_ceiling: budgetCeiling,
+        recovery_strategy: strategy,
+        preferences: {
+          avoid_changing_hotels: avoidHotels,
+          protect_important_activities: protectActivities,
+          avoid_overnight_travel: avoidOvernight,
+        },
+      });
+      const newTripId = res?.id || res?.trip?.id;
+      if (newTripId) {
+        router.push(`/trips/${newTripId}/add-bookings`);
+      } else {
+        throw new Error('Trip creation returned invalid ID');
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError(err?.message || 'Failed to create trip. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <AppShell activeTripName="New Trip Setup">
+
       <div className="max-w-3xl mx-auto space-y-8">
         {/* Header */}
         <div>
@@ -66,6 +103,7 @@ export default function CreateTripPage() {
               </label>
               <input
                 type="text"
+                placeholder="e.g. Goa Vacation 2026, Kashmir Winter Expedition"
                 value={tripName}
                 onChange={(e) => setTripName(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-[#080d1a] border border-[#1c2942] text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
@@ -82,6 +120,7 @@ export default function CreateTripPage() {
                   <MapPin size={16} className="absolute left-3.5 top-3.5 text-[#64748b]" />
                   <input
                     type="text"
+                    placeholder="e.g. North Goa, Leh Ladakh, Manali"
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#080d1a] border border-[#1c2942] text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
@@ -234,13 +273,20 @@ export default function CreateTripPage() {
             </label>
           </div>
 
+          {error && (
+            <div className="p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold">
+              {error}
+            </div>
+          )}
+
           {/* Submit */}
-          <div className="pt-4">
+          <div className="pt-2">
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl text-sm font-black text-white bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-900/50 transition-all hover:scale-[1.01]"
+              disabled={isSubmitting}
+              className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl text-sm font-black text-white bg-blue-600 hover:bg-blue-500 disabled:opacity-50 shadow-xl shadow-blue-900/50 transition-all hover:scale-[1.01] cursor-pointer"
             >
-              <span>Continue to Add Bookings</span>
+              <span>{isSubmitting ? 'Creating Journey Graph...' : 'Continue to Add Bookings'}</span>
               <ArrowRight size={16} />
             </button>
           </div>

@@ -75,3 +75,37 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #2a385c;
 }
+
+/* Traveling Dash & Ripple Pulse Animations */
+@keyframes flowDash {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-flow-dash {
+  animation: flowDash 1.4s linear infinite;
+}
+
+@keyframes rippleHalo {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+}
+
+.animate-ripple-halo {
+  animation: rippleHalo 2s ease-in-out infinite;
+}
+

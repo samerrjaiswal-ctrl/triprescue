@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
@@ -12,57 +12,58 @@ import {
   Shield,
   ArrowRight,
   Sparkles,
+  PlaneTakeoff,
+  Clock,
   CheckCircle2,
 } from 'lucide-react';
 import AppShell from '@/components/layout/AppShell';
+import { fetchTrips } from '@/lib/api';
 
-const tripsList = [
-  {
-    id: 'trip_001',
-    name: 'Manali Adventure',
-    destination: 'Manali, Himachal Pradesh',
-    dates: 'Sep 12 – 17, 2026',
-    travelers: 2,
-    bookingsCount: 6,
-    health: 92,
-    status: 'ACTIVE',
-    badge: 'Protected & Monitored',
-  },
-  {
-    id: 'trip_002',
-    name: 'Goa Coastal Getaway',
-    destination: 'North Goa, India',
-    dates: 'Oct 24 – 28, 2026',
-    travelers: 4,
-    bookingsCount: 4,
-    health: 96,
-    status: 'ACTIVE',
-    badge: 'Stable',
-  },
-  {
-    id: 'trip_003',
-    name: 'Ladakh High Altitude Circuit',
-    destination: 'Leh & Pangong Tso',
-    dates: 'Jul 10 – 18, 2026',
-    travelers: 2,
-    bookingsCount: 8,
-    health: 98,
-    status: 'RECOVERED',
-    badge: 'Recovered via Alliance Air',
-  },
-];
+interface TripItem {
+  id: string;
+  name: string;
+  destination: string;
+  start_date?: string;
+  end_date?: string;
+  traveler_count?: number;
+  status?: string;
+  trip_health_score?: number | null;
+  booking_count?: number;
+}
 
 export default function MyTripsPage() {
+  const [trips, setTrips] = useState<TripItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
 
-  const filtered = tripsList.filter(
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        const res = await fetchTrips();
+        if (res?.trips && Array.isArray(res.trips)) {
+          setTrips(res.trips);
+        } else {
+          setTrips([]);
+        }
+      } catch (err) {
+        console.error('Failed to load trips:', err);
+        setTrips([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  const filtered = trips.filter(
     (t) =>
-      t.name.toLowerCase().includes(search.toLowerCase()) ||
-      t.destination.toLowerCase().includes(search.toLowerCase())
+      (t.name || '').toLowerCase().includes(search.toLowerCase()) ||
+      (t.destination || '').toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <AppShell activeTripName="All My Trips">
+    <AppShell activeTripName="My Trips">
       <div className="space-y-8 max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -93,58 +94,112 @@ export default function MyTripsPage() {
           />
         </div>
 
-        {/* Trip Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((trip) => (
-            <Link
-              key={trip.id}
-              href={`/trips/${trip.id}/dashboard`}
-              className="glass-card rounded-3xl p-6 flex flex-col justify-between space-y-5 hover:border-blue-500/50 transition-all group"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span
-                    className={`text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full border ${
-                      trip.status === 'RECOVERED'
-                        ? 'bg-purple-500/15 text-purple-300 border-purple-500/30'
-                        : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                    }`}
-                  >
-                    {trip.badge}
-                  </span>
+        {/* Loading State */}
+        {loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="glass-card rounded-3xl p-6 h-56 animate-pulse bg-[#0a101f]/60 border border-[#1c2942]"
+              />
+            ))}
+          </div>
+        )}
 
-                  <span className="text-xs font-mono font-bold text-emerald-400">
-                    {trip.health}% Health
-                  </span>
-                </div>
+        {/* Empty State */}
+        {!loading && trips.length === 0 && (
+          <div className="glass-card rounded-3xl p-10 lg:p-16 text-center space-y-5 border border-[#1c2942]">
+            <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mx-auto shadow-xl shadow-blue-950/40">
+              <PlaneTakeoff size={30} />
+            </div>
+            <div className="max-w-md mx-auto space-y-2">
+              <h2 className="text-xl font-bold text-white">No protected journeys yet</h2>
+              <p className="text-xs text-[#94a3b8] leading-relaxed">
+                Add your upcoming trip to start real-time multi-modal monitoring. When delays occur,
+                TripRescue detects broken connections and recalculates recovery alternatives.
+              </p>
+            </div>
+            <div className="pt-2">
+              <Link
+                href="/create-trip"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-black text-white bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-900/50 transition-all hover:scale-105"
+              >
+                <Plus size={15} /> Protect Your First Journey
+              </Link>
+            </div>
+          </div>
+        )}
 
-                <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
-                  {trip.name}
-                </h3>
+        {/* Populated Trips Cards Grid */}
+        {!loading && trips.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((trip) => {
+              const health = trip.trip_health_score ?? 100;
+              const status = trip.status || 'ACTIVE';
 
-                <div className="space-y-1.5 mt-2.5 text-xs text-[#94a3b8]">
-                  <div className="flex items-center gap-1.5">
-                    <MapPin size={13} className="text-blue-400" />
-                    <span>{trip.destination}</span>
+              return (
+                <Link
+                  key={trip.id}
+                  href={`/trips/${trip.id}/dashboard`}
+                  className="glass-card rounded-3xl p-6 flex flex-col justify-between space-y-5 hover:border-blue-500/50 transition-all group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span
+                        className={`text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full border ${
+                          status === 'DISRUPTED'
+                            ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
+                            : status === 'RECOVERED'
+                            ? 'bg-purple-500/15 text-purple-300 border-purple-500/30'
+                            : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                        }`}
+                      >
+                        {status}
+                      </span>
+
+                      <span className="text-xs font-mono font-bold text-emerald-400">
+                        {health}% Health
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                      {trip.name}
+                    </h3>
+
+                    <div className="space-y-1.5 mt-2.5 text-xs text-[#94a3b8]">
+                      {trip.destination && (
+                        <div className="flex items-center gap-1.5">
+                          <MapPin size={13} className="text-blue-400" />
+                          <span>{trip.destination}</span>
+                        </div>
+                      )}
+                      {(trip.start_date || trip.end_date) && (
+                        <div className="flex items-center gap-1.5">
+                          <Calendar size={13} className="text-[#64748b]" />
+                          <span>
+                            {trip.start_date} {trip.end_date ? `– ${trip.end_date}` : ''}
+                          </span>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-1.5">
+                        <Users size={13} className="text-[#64748b]" />
+                        <span>
+                          {trip.traveler_count || 1} Travelers
+                          {trip.booking_count !== undefined ? ` • ${trip.booking_count} Bookings` : ''}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Calendar size={13} className="text-[#64748b]" />
-                    <span>{trip.dates}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Users size={13} className="text-[#64748b]" />
-                    <span>{trip.travelers} Travelers • {trip.bookingsCount} Bookings</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="pt-4 border-t border-[#1c2942] flex items-center justify-between text-xs font-bold text-blue-400 group-hover:translate-x-1 transition-transform">
-                <span>Open Command Center</span>
-                <ArrowRight size={14} />
-              </div>
-            </Link>
-          ))}
-        </div>
+                  <div className="pt-4 border-t border-[#1c2942] flex items-center justify-between text-xs font-bold text-blue-400 group-hover:translate-x-1 transition-transform">
+                    <span>Open Dashboard</span>
+                    <ArrowRight size={14} />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </AppShell>
   );

@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
+import TripRescueBrand from '@/components/ui/TripRescueBrand';
 import {
   Shield,
   ArrowRight,
@@ -23,32 +25,22 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#080c14] text-[#f8fafc] flex flex-col selection:bg-blue-600 selection:text-white">
       {/* Navbar */}
       <header className="sticky top-0 z-50 h-20 bg-[#080c14]/80 backdrop-blur-xl border-b border-[#162035] px-6 lg:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
-            <Shield size={22} className="text-white" />
-          </div>
-          <div>
-            <span className="font-black text-lg tracking-tight text-white block leading-none">
-              TripRescue
-            </span>
-            <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block mt-0.5">
-              Recovery Engine
-            </span>
-          </div>
+        <Link href="/" className="flex items-center">
+          <TripRescueBrand iconSize={42} wordmarkSize="md" />
         </Link>
 
         <div className="flex items-center gap-4">
           <Link
-            href="/trips/trip_001/dashboard"
+            href="/my-trips"
             className="text-xs font-bold text-[#94a3b8] hover:text-white transition-colors"
           >
-            Live Demo
+            My Trips
           </Link>
           <Link
             href="/create-trip"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-900/40 transition-all hover:scale-105"
           >
-            <span>Create My Trip</span>
+            <span>Protect a Trip</span>
             <ArrowRight size={14} />
           </Link>
         </div>
@@ -66,7 +58,7 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
           >
             <Sparkles size={14} />
-            Graph-Based Multi-Modal Travel Recovery
+            Graph-Based Multi-Modal Travel Recovery Platform
           </motion.div>
 
           <motion.h1
@@ -87,7 +79,7 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            TripRescue models your entire multi-modal itinerary as a connected dependency graph. When a delay strikes, we calculate ripple effects in milliseconds and produce constraint-aware recovery plans.
+            TripRescue models your entire multi-modal itinerary as a connected dependency graph. When a flight, train, or road delay strikes, we calculate downstream ripple effects in milliseconds and generate constraint-aware atomic recovery plans.
           </motion.p>
 
           <motion.div
@@ -97,23 +89,24 @@ export default function LandingPage() {
             transition={{ delay: 0.3 }}
           >
             <Link
-              href="/trips/trip_001/dashboard"
+              href="/create-trip"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-2xl shadow-indigo-950/80 transition-all hover:scale-105"
             >
-              <Zap size={18} />
-              <span>Launch Demo (Manali Adventure)</span>
+              <Shield size={18} />
+              <span>Protect My Trip</span>
+              <ArrowRight size={16} />
             </Link>
 
             <Link
-              href="/create-trip"
+              href="/my-trips"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm font-bold text-[#cbd5e1] bg-[#0e1628] hover:bg-[#142038] border border-[#1c2942] transition-all"
             >
-              Create New Trip
+              View My Trips
             </Link>
           </motion.div>
         </div>
 
-        {/* Interactive Visual Graph Preview (Pune -> Delhi -> Chandigarh -> Manali) */}
+        {/* Interactive Visual Graph Preview */}
         <motion.div
           className="relative z-10 w-full max-w-5xl mx-auto mt-16 p-6 lg:p-8 rounded-3xl glass-card border-[#1c2942] shadow-2xl"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -123,48 +116,40 @@ export default function LandingPage() {
           <div className="flex items-center justify-between pb-6 border-b border-[#1c2942] mb-8 text-left">
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-[#64748b]">
-                Connected Graph Architecture
+                Real-Time Multi-Modal Architecture
               </div>
               <div className="text-lg font-black text-white mt-0.5">
-                Manali Adventure • 6 Interconnected Nodes
+                Continuous Dependency Graph & Slack Protection
               </div>
             </div>
             <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-              Live Monitoring
+              Continuous Monitoring
             </span>
           </div>
 
           {/* Node Flow Grid */}
           <div className="grid grid-cols-2 md:grid-cols-6 gap-3 text-left">
             {[
-              { icon: Plane, label: 'Flight 6E-1234', from: 'Pune', to: 'Delhi', status: 'DISRUPTED (+5h)' },
-              { icon: Car, label: 'Uber Cab', from: 'Airport', to: 'CP', status: 'CRITICAL (-270m)' },
-              { icon: Building2, label: 'The Imperial', from: 'Hotel', to: 'CP', status: 'AT RISK' },
-              { icon: Train, label: 'Shatabdi Exp', from: 'Delhi', to: 'CDG', status: 'CRITICAL (-120m)' },
-              { icon: Car, label: 'Volvo Night', from: 'CDG', to: 'Manali', status: 'CRITICAL (-30m)' },
-              { icon: Mountain, label: 'Paragliding', from: 'Solang', to: 'Manali', status: 'PROTECTED' },
+              { icon: Plane, label: 'Flight Leg', from: 'Airport', to: 'Hub', status: 'MONITORED' },
+              { icon: Car, label: 'Airport Transfer', from: 'Terminal', to: 'Hotel', status: 'PROTECTED (+45m slack)' },
+              { icon: Building2, label: 'Hotel Booking', from: 'City Center', to: 'Stay', status: 'SECURED' },
+              { icon: Train, label: 'Intercity Rail', from: 'Station A', to: 'Station B', status: 'BUFFERED (+90m slack)' },
+              { icon: Car, label: 'Express Transit', from: 'Station', to: 'Destination', status: 'SAFE' },
+              { icon: Mountain, label: 'Activity / Tour', from: 'Destination', to: 'Return', status: 'SAFEGUARDED' },
             ].map((item, idx) => {
               const Icon = item.icon;
-              const isDisrupted = item.status.includes('DISRUPTED');
-              const isCritical = item.status.includes('CRITICAL');
 
               return (
                 <div
                   key={idx}
-                  className={`p-3.5 rounded-2xl border transition-all ${
-                    isDisrupted
-                      ? 'bg-red-500/10 border-red-500/40 text-red-300'
-                      : isCritical
-                      ? 'bg-rose-500/10 border-rose-500/30 text-rose-300'
-                      : 'bg-[#080d1a] border-[#1c2942] text-[#94a3b8]'
-                  }`}
+                  className="p-3.5 rounded-2xl border bg-[#080d1a] border-[#1c2942] text-[#94a3b8] hover:border-blue-500/40 transition-all"
                 >
                   <div className="w-8 h-8 rounded-lg bg-[#141e33] flex items-center justify-center text-blue-400 mb-2">
                     <Icon size={16} />
                   </div>
                   <div className="text-xs font-bold text-white truncate">{item.label}</div>
                   <div className="text-[10px] text-[#64748b]">{item.from} → {item.to}</div>
-                  <div className="text-[9px] font-mono font-black mt-2 truncate">
+                  <div className="text-[9px] font-mono font-bold mt-2 text-emerald-400 truncate">
                     {item.status}
                   </div>
                 </div>

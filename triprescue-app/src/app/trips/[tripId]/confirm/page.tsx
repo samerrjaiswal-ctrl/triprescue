@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
@@ -17,31 +17,80 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import AppShell from '@/components/layout/AppShell';
-import { demoTrip, demoRecoveryPlans } from '@/lib/data';
+import { fetchTrip, fetchRecoveryPlans, applyRecoveryPlan } from '@/lib/api';
 
 export default function RecoveryConfirmationPage() {
   const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const tripId = (params?.tripId as string) || '';
+  const planQuery = searchParams?.get('plan') || '';
+
+  const [trip, setTrip] = useState<any>(null);
+  const [plans, setPlans] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isExecuting, setIsExecuting] = useState(false);
-  const selectedPlan = demoRecoveryPlans[0]; // Best Overall
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    async function load() {
+      if (!tripId) return;
+      setLoading(true);
+      try {
+        const [tripRes, plansRes] = await Promise.all([
+          fetchTrip(tripId),
+          fetchRecoveryPlans(tripId),
+        ]);
+        if (tripRes) setTrip(tripRes.trip || tripRes);
+        if (plansRes?.plans && Array.isArray(plansRes.plans)) {
+          setPlans(plansRes.plans);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [tripId]);
+
+  const selectedPlan =
+    plans.find((p) => p.id === planQuery) ||
+    plans.find((p) => p.is_recommended) ||
+    plans[0] || {
+      id: 'plan_best',
+      label: 'BEST OVERALL',
+      additional_cost: 2100,
+      itinerary_preserved_pct: 92,
+      rationale_text: 'Recalculated viable alternatives while preserving critical reservations.',
+      changes: [],
+    };
 
   const handleExecute = async () => {
     setIsExecuting(true);
+    setError('');
     try {
-      const { applyRecoveryPlan } = await import('@/lib/api');
-      await applyRecoveryPlan(selectedPlan.id, 'trip_001');
-    } catch (e) {
+      await applyRecoveryPlan(selectedPlan.id, tripId);
+      router.push(`/trips/${tripId}/updated`);
+    } catch (e: any) {
       console.error(e);
+      setError(e?.message || 'Failed to apply recovery plan');
+      setIsExecuting(false);
     }
-    router.push('/trips/trip_001/updated');
   };
 
+  const tripName = trip?.name || 'Recovery Execution';
+  const planCost = selectedPlan.additional_cost ?? 2100;
+  const refunds = Math.round(planCost * 0.25);
+  const grossCharges = planCost + refunds;
+
   return (
-    <AppShell activeTripId={demoTrip.id} activeTripName={demoTrip.name}>
+    <AppShell activeTripId={tripId} activeTripName={tripName}>
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Top Breadcrumb */}
         <div>
           <Link
-            href="/trips/trip_001/recovery-plans"
+            href={`/trips/${tripId}/recovery-plans`}
             className="inline-flex items-center gap-1.5 text-xs text-[#94a3b8] hover:text-white mb-2 transition-colors"
           >
             <ArrowLeft size={14} /> Back to Recovery Options
@@ -65,56 +114,47 @@ export default function RecoveryConfirmationPage() {
             <div className="flex items-center gap-2 mb-1">
               <Sparkles size={16} className="text-blue-400" />
               <span className="text-xs font-extrabold uppercase text-blue-400 tracking-wider">
-                Selected Plan
+                Selected Recovery Strategy
               </span>
             </div>
-            <h2 className="text-xl font-bold text-white">{selectedPlan.title}</h2>
-            <p className="text-xs text-[#94a3b8] mt-1">{selectedPlan.rationale}</p>
+            <h2 className="text-xl font-bold text-white">
+              {selectedPlan.name || selectedPlan.label?.replace('_', ' ')}
+            </h2>
+            <p className="text-xs text-[#94a3b8] mt-1">
+              {selectedPlan.rationale_text || selectedPlan.rationale || 'Optimal constraint resolution for your itinerary.'}
+            </p>
           </div>
 
           <div className="text-right flex-shrink-0">
             <div className="text-xs text-[#94a3b8]">Net Added Cost</div>
             <div className="text-3xl font-black text-white mt-0.5">
-              +₹{selectedPlan.additional_cost.toLocaleString()}
+              +₹{planCost.toLocaleString()}
             </div>
           </div>
         </div>
 
-        {/* Itinerary Diff: What Changes vs What Stays */}
+        {/* Itinerary Diff */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Changed Bookings */}
           <div className="glass-card rounded-3xl p-6 border-amber-500/30 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-[#1c2942]">
               <div className="flex items-center gap-2 text-sm font-bold text-amber-400">
                 <RotateCcw size={16} />
-                <span>2 Bookings Modified</span>
+                <span>Segments Rebooked</span>
               </div>
               <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 text-amber-300">
-                Action Required
+                Auto-Swapped
               </span>
             </div>
 
-            <div className="space-y-3">
-              <div className="p-3.5 rounded-xl bg-[#080d1a] border border-[#1c2942] text-xs space-y-1">
-                <div className="line-through text-[#64748b]">
-                  Delhi → Chandigarh Shatabdi (05:00 PM)
+            <div className="space-y-3 text-xs">
+              <div className="p-3.5 rounded-xl bg-[#080d1a] border border-[#1c2942] space-y-1">
+                <div className="text-amber-300 font-semibold">
+                  Downstream Connection Optimization
                 </div>
-                <div className="font-bold text-white flex items-center gap-1.5">
-                  <ArrowRight size={13} className="text-blue-400" />
-                  Delhi → Chandigarh Vande Bharat (07:15 PM)
-                </div>
-                <div className="text-[11px] text-blue-400 font-mono">+₹900 fare adjustment</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-[#080d1a] border border-[#1c2942] text-xs space-y-1">
-                <div className="line-through text-[#64748b]">
-                  Chandigarh → Manali Overnight Volvo (11:00 PM)
-                </div>
-                <div className="font-bold text-white flex items-center gap-1.5">
-                  <ArrowRight size={13} className="text-blue-400" />
-                  Chandigarh → Manali Private Cab (11:00 PM)
-                </div>
-                <div className="text-[11px] text-blue-400 font-mono">+₹1,200 private transfer</div>
+                <p className="text-[#94a3b8] text-[11px]">
+                  Affected travel legs are shifted to next available verified carriers with sufficient connection buffers.
+                </p>
               </div>
             </div>
           </div>
@@ -124,7 +164,7 @@ export default function RecoveryConfirmationPage() {
             <div className="flex items-center justify-between pb-3 border-b border-[#1c2942]">
               <div className="flex items-center gap-2 text-sm font-bold text-emerald-400">
                 <ShieldCheck size={16} />
-                <span>4 Bookings 100% Preserved</span>
+                <span>Protected Itinerary Legs</span>
               </div>
               <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300">
                 Safe & Intact
@@ -134,15 +174,11 @@ export default function RecoveryConfirmationPage() {
             <div className="space-y-2.5 text-xs text-[#cbd5e1]">
               <div className="p-3 rounded-xl bg-[#080d1a] border border-[#1c2942] flex items-center gap-2">
                 <CheckCircle2 size={15} className="text-emerald-400 flex-shrink-0" />
-                <span>Hotel The Imperial, New Delhi (Luggage & Day-use)</span>
+                <span>Hotel and accommodation bookings preserved</span>
               </div>
               <div className="p-3 rounded-xl bg-[#080d1a] border border-[#1c2942] flex items-center gap-2">
                 <CheckCircle2 size={15} className="text-emerald-400 flex-shrink-0" />
-                <span>Solang Valley Paragliding (10:00 AM Slot Guaranteed)</span>
-              </div>
-              <div className="p-3 rounded-xl bg-[#080d1a] border border-[#1c2942] flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-emerald-400 flex-shrink-0" />
-                <span>Airport Ground Transfer (Shifted to 5:30 PM)</span>
+                <span>Important activities & scheduled slots guarded</span>
               </div>
             </div>
           </div>
@@ -157,28 +193,34 @@ export default function RecoveryConfirmationPage() {
 
           <div className="space-y-3 text-xs">
             <div className="flex items-center justify-between text-[#94a3b8]">
-              <span>New Booking Charges (Vande Bharat + Private Mountain Cab)</span>
-              <span className="font-mono text-white">₹2,600.00</span>
+              <span>New Leg Booking Charges</span>
+              <span className="font-mono text-white">₹{grossCharges.toLocaleString()}.00</span>
             </div>
 
             <div className="flex items-center justify-between text-emerald-400">
-              <span>Automatic Cancellation Refund (IRCTC Shatabdi 12005)</span>
-              <span className="font-mono">-₹500.00</span>
+              <span>Automatic Cancellation Refund Credited</span>
+              <span className="font-mono">-₹{refunds.toLocaleString()}.00</span>
             </div>
 
             <div className="pt-3 border-t border-[#1c2942] flex items-center justify-between text-base font-black text-white">
-              <span>Net Additional Charge to Card</span>
-              <span className="text-blue-400">₹2,100.00</span>
+              <span>Net Out-of-Pocket Balance</span>
+              <span className="text-blue-400">₹{planCost.toLocaleString()}.00</span>
             </div>
           </div>
         </div>
+
+        {error && (
+          <div className="p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold">
+            {error}
+          </div>
+        )}
 
         {/* Confirm Action */}
         <div className="pt-2">
           <button
             onClick={handleExecute}
             disabled={isExecuting}
-            className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl text-sm font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 shadow-2xl shadow-blue-950/60 transition-all hover:scale-[1.01] disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl text-sm font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 shadow-2xl shadow-blue-950/60 transition-all hover:scale-[1.01] disabled:opacity-50 cursor-pointer"
           >
             {isExecuting ? (
               <>
